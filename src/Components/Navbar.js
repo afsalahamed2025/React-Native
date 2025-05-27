@@ -13,15 +13,13 @@ const Stack = createStackNavigator();
 const Navigationfiles = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator >
+      <Stack.Navigator>
         <Stack.Screen name="Profile" component={Profile} />
         <Stack.Screen name="Main" component={Main} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Lists" component={Lists} />
         <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name="Design" component={Design_Pages} />
-
-
+        <Stack.Screen name="Design" component={Design_Pages} />
       </Stack.Navigator>
     </NavigationContainer>
   )
