@@ -7,6 +7,7 @@ import Login from './Login';
 import Lists from './Lists';
 import Home from './Home';
 import Design_Pages from './Design_Pages';
+import Break from './Breakdown'
 
 const Stack = createStackNavigator();
 
@@ -20,6 +21,7 @@ const Navigationfiles = () => {
         <Stack.Screen name="Lists" component={Lists} />
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Design" component={Design_Pages} />
+        <Stack.Screen name="Break" component={Break}/>
       </Stack.Navigator>
     </NavigationContainer>
   )

@@ -6,30 +6,30 @@ export default function Login({navigation}) {
   const [password, setpassword] = useState('')
 
   const handlePress = () => {
-    const validusername = "sharuk";
-    const validpassword = "123456";
+    // const validusername = "sharuk";
+    // const validpassword = "123456";
 
-    if (!username.trim()) {
-      Alert.alert('Validation Error', 'Username field is required ')
-      return
-    }
-    else if (!password.trim()) {
-      Alert.alert('Validation Error', 'Password field is required')
-      return
-    }
-    else if (username !== validusername || password !== validpassword) {
-      const wrong =
-        username !== validusername ? 'Invalid Username'
-          :
-          password !== validpassword ? ' Invalid Password ' : 'Invalid Username or Password';
+    // if (!username.trim()) {
+    //   Alert.alert('Validation Error', 'Username field is required ')
+    //   return
+    // }
+    // else if (!password.trim()) {
+    //   Alert.alert('Validation Error', 'Password field is required')
+    //   return
+    // }
+    // else if (username !== validusername || password !== validpassword) {
+    //   const wrong =
+    //     username !== validusername ? 'Invalid Username'
+    //       :
+    //       password !== validpassword ? ' Invalid Password ' : 'Invalid Username or Password';
 
-      Alert.alert('Validation Error', wrong);
-      return;
-    }
-    else {
-      Alert.alert('Success', 'Login Successfully');
+    //   Alert.alert('Validation Error', wrong);
+    //   return;
+    // }
+    // else {
+      // Alert.alert('Success', 'Login Successfully');
       navigation.navigate('Home')
-    }
+   // }
   }
   return (
     <View style={styles.container

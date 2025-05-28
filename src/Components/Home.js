@@ -9,7 +9,8 @@ import {
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
-export default function Home() {
+
+export default function Home({navigation}) {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
@@ -18,21 +19,17 @@ export default function Home() {
         </Text>
 
         <TouchableOpacity>
-          <MaterialIcons name="notifications" size={24} color="#fff" />
+          <MaterialIcons name="notifications" size={28} color="#fff" />
         </TouchableOpacity>
       </View>
 
       <View style={styles.statusContainer}>
-        <TouchableOpacity>
-          <StatusBox label="Open" count="0" color="red" />
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <StatusBox label="Close" count="0" color="green" />
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <StatusBox label="StandBy" count="0" color="orange" />
-        </TouchableOpacity>
-      </View>
+   <StatusBox label="Open" count="0" color="red" />
+  <View style={{ width: 1, height: 70, backgroundColor: 'black', fontSize:"16", fontWeight:"900", justifyContent:"center",  alignSelf:"center",}} />
+  <StatusBox label="Close" count="0" color="green" />
+  <View style={{ width: 1, height: 70, backgroundColor: 'black', fontSize:"16", fontWeight:"900" , justifyContent:"center",  alignSelf:"center", }} />
+  <StatusBox label="StandBy" count="0" color="orange" />
+     </View>
 
       <View style={styles.progressBox}>
         <Text style={styles.date}>Today May 26 2025</Text>
@@ -42,11 +39,11 @@ export default function Home() {
 
       <Text style={styles.sectionTitle}>Modules</Text>
       <View style={styles.moduleContainer}>
-        <ModuleBox
-          backgroundColor=""
+        <ModuleBox 
+          navigation={navigation}
           label="Breakdown Maintenance"
-          count="0"
-          icon="tools"
+          count="0" 
+          icon="tools"  
         />
         <ModuleBox label="Preventive Maintenance" count="0" icon="cogs" />
         <ModuleBox
@@ -60,7 +57,7 @@ export default function Home() {
       <Text style={styles.sectionTitle}>Tools</Text>
       <View style={styles.moduleContainer}>
         <ToolBox label="Scan To Get Asst Details" icon="qrcode" />
-        <ToolBox label="My Activity" icon="chart-line" />
+        <ToolBox label="My Activity Side" icon="chart-line" />
       </View>
     </ScrollView>
   );
@@ -74,12 +71,15 @@ const StatusBox = ({label, count, color}) => (
 );
 
 // MODULES //
-const ModuleBox = ({label, count, icon}) => (
-  <View
+const ModuleBox = ({label, count, icon, navigation}) => (
+  <TouchableOpacity 
+     onPress={()=>{label=="Breakdown Maintenance" ? (console.log('yes this break screen'), navigation.navigate('Break')):console.log("no this screen");
+     }}
     style={[
       styles.moduleBox,
       {height: 90, alignSelf: 'center', justifyContent: 'center'},
-    ]}>
+    ]}
+    >
     <View
       style={{
         height: 45,
@@ -117,7 +117,7 @@ const ModuleBox = ({label, count, icon}) => (
             textAlign: 'center',
             fontSize: 17,
             fontWeight: '600',
-            color: 'green',
+            color: '3cdf39',
           }}>
           ({count})
         </Text>
@@ -135,47 +135,59 @@ const ModuleBox = ({label, count, icon}) => (
           }}
           name={icon}
           size={28}
-          color="#08aa2b"
+          color="#3cdf39"
         />
       </View>
     </View>
-  </View>
+  </TouchableOpacity>
 );
 
-const ToolBox = ({label, icon}) => (
+const ToolBox = ({ label, icon }) => (
   <View
     style={[
       styles.moduleBox,
       {
         height: 100,
-        
+        flexDirection: 'row',
         alignSelf: 'center',
         justifyContent: 'center',
-        backgroundColor: 'red',
+        alignItems: 'center',
       },
     ]}>
+    
+   
     <View
       style={{
-       width:100,
-        height: 50,
-        backgroundColor: 'blue',
+        width: '20%',
+        height: 100,
         alignSelf: 'center',
         justifyContent: 'center',
-        borderRadius: 10,
-      }}></View>
-    <FontAwesome5 name={icon} color="#413e3e" />
+      
+        flexDirection: 'row',
+        alignItems: 'center',
+      }}>
+      <FontAwesome5 name={icon} color="#3cdf39" size={24} />
+    </View>
+
+   
     <View
       style={{
-        
-        height: 45,
-        backgroundColor: 'blue',
+        width: '80%',
+        height: 100,
         alignSelf: 'center',
         justifyContent: 'center',
-        borderRadius: 10,
-      }}></View>
-    <Text>{label}</Text>
+       
+        flexDirection: 'row',
+        alignItems: 'center',
+      }}>
+    
+     
+      <Text style={{ color: '#000000', fontSize: 16, textAlign:"center" }}>{label}</Text>
+    </View>
   </View>
 );
+
+
 
 const styles = StyleSheet.create({
   container: {
@@ -183,10 +195,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#f8f8f8',
   },
   header: {
-    backgroundColor: '#35B333',
+    backgroundColor: '#3cdf39',
     padding: 25,
+    width:"100%",
     height: 100,
-    borderRadius: 30,
+    borderBottomLeftRadius:50,
+    borderBottomRightRadius:50,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
@@ -196,26 +210,27 @@ const styles = StyleSheet.create({
   },
   name: {
     fontWeight: 'bold',
+    fontSize:18,
   },
   statusContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     backgroundColor: '#fff',
-    marginTop: -20,
+    marginTop: -28,
     padding: 10,
 
-    borderRadius: 10,
+    borderRadius: 50,
     marginHorizontal: 10,
   },
 
   statusBox: {
     alignItems: 'center',
-    borderWidth: 1,
+    
     padding: 10,
     borderRadius: 8,
   },
   progressBox: {
-    backgroundColor: '#35B333',
+    backgroundColor: '#3cdf39',
     margin: 10,
     padding: 10,
     borderRadius: 10,
@@ -249,7 +264,7 @@ const styles = StyleSheet.create({
   },
 
   moduleBox: {
-    borderColor: '#03c21f',
+    borderColor: '#3cdf39',
     backgroundColor: '#fff',
     width: '45%',
     alignItems: 'center',
