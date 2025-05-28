@@ -37,7 +37,7 @@ const Break = () => {
         <View style={{height:20}}/>
 
         <View style={styles.buttonwrapper}>
-  <Button title="Submit"  color="#0073ff" />
+  <Button title="Submit" onPress={handlepress}  color="#0073ff" />
 </View>
       </View>
     </View>
