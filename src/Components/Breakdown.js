@@ -49,9 +49,19 @@ console.log({selectNatureofComplaint,switches,selectPriority,smartSwitch,enterDe
 console.log(datas,"DATAS")
     const Submitedddd = selectNatureofComplaint=='tech'? 'Rise complaint':'Successfully'; 
     Alert.alert('Success',Submitedddd)
+    Clear_all()
   }
 
 
+}
+
+const Clear_all = () => {
+setselectNatureofComplaint ('')
+setswitches('')
+setselectPriority('');
+setsmartSwitch('');
+setenterDescription('');
+setenterClientWorkerNo('');
 }
 /* ***********====================JAVASCRIPT=========================== ******/
   // let selectNatureofComplaint = '';
