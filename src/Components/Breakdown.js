@@ -1,87 +1,60 @@
-import {StyleSheet, Text, View, Button, Alert} from 'react-native';
+import {StyleSheet, Text, View, Button, Alert, ScrollView} from 'react-native';
 import React, { useState } from 'react';
 import {TextInput} from 'react-native-gesture-handler';
-import { log } from 'react-native-reanimated';
 
 const Break = () => {
+  const [selectNatureofComplaint, setselectNatureofComplaint] = useState('');
+  const [switches, setswitches] = useState('');
+  const [selectPriority, setselectPriority] = useState('');
+  const [smartSwitch, setsmartSwitch] = useState('');
+  const [enterDescription, setenterDescription] = useState('');
+  const [enterClientWorkerNo, setenterClientWorkerNo] = useState('');
 
+  const [submittedCards, setSubmittedCards] = useState([]);
 
+  const handlePress = () => {
+    if(selectNatureofComplaint === ''){
+      Alert.alert('Error','Select Nature of Complaint');
+    }
+    else if (switches == ''){
+      Alert.alert('Error','Switches');
+    }
+    else if (selectPriority === ''){
+      Alert.alert('Error','Select Priority');
+    }
+    else if (smartSwitch == ''){
+      Alert.alert('Error','Enter Description');
+    }
+    else if (enterDescription === ''){
+      Alert.alert('Error','Enter Client Worker No');
+    }
+    else if (enterClientWorkerNo == ''){
+      Alert.alert('Error','Enter Client Worker No');
+    }
+    else {
+      const Submitedddd = selectNatureofComplaint=='tech'? 'Rise complaint':'Successfully';
+      Alert.alert('Success',Submitedddd);
 
-/* =========********** USE STATE ==========******** */
-const [selectNatureofComplaint, setselectNatureofComplaint]= useState('');
-const [switches,setswitches]= useState('');
-const [selectPriority,setselectPriority]=useState('');
-const [smartSwitch,setsmartSwitch]=useState('');
-const [enterDescription,setenterDescription]=useState('');
-const [enterClientWorkerNo,setenterClientWorkerNo]=useState('');
+    
+      const newCard = {
+        
+        selectNatureofComplaint,
+        switches,
+        selectPriority,
+        smartSwitch,
+        enterDescription,
+        enterClientWorkerNo,
+      };
+      setSubmittedCards(prev => [newCard, ...prev]);
 
-const [datas,setdatas]=useState([]);
-
-
-
-
-const handlePress =()=>{ 
-  if(selectNatureofComplaint === ''){
-    Alert.alert('Error','Select Nature of Complaint')
-  }
-  else if (switches == ''){
-    Alert.alert('Error','Switches')
-  }
-  else if (selectPriority === ''){
-    Alert.alert('Error','Select Priority')
-  }
-  else if (smartSwitch == ''){
-    Alert.alert('Error','Enter Description')
-  }
-  else if (enterDescription === ''){
-    Alert.alert('Error','Enter Client Worker No')
-  }
-  else if (enterClientWorkerNo == ''){
-    Alert.alert('Error','Enter Client Worker No')
-  }
-  else {
- 
-/* OBJECT LOG */
-const Temp_data = {selectNatureofComplaint,switches,selectPriority,smartSwitch,enterDescription,enterClientWorkerNo}
-setdatas(prevDatas => [...prevDatas, Temp_data]);
-
-console.log({selectNatureofComplaint,switches,selectPriority,smartSwitch,enterDescription,enterClientWorkerNo})
-console.log(datas,"DATAS")
-    const Submitedddd = selectNatureofComplaint=='tech'? 'Rise complaint':'Successfully'; 
-    Alert.alert('Success',Submitedddd)
-  }
-
-
-}
-/* ***********====================JAVASCRIPT=========================== ******/
-  // let selectNatureofComplaint = '';
-  // let switches = '';
-  // let selectPriority = '';
-  // let smartSwitch = '';
-  // let enterDescription = '';
-  // let enterClientWorkerNo = '';
-
-  // const handlePress = () => {
-  //   if (selectNatureofComplaint == '') {
-  //     Alert.alert('Error', 'Select Nature of Complaint');
-  //   } else if (switches === '') {
-  //     Alert.alert('Error', 'Switches');
-  //   } else if (selectPriority == '') {
-  //     Alert.alert('Error', 'Select Priority');
-  //   } else if (smartSwitch === '') {
-  //     Alert.alert('Error', 'Smart Switch');
-  //   } else if (enterDescription == '') {
-  //     Alert.alert('Error', 'Enter Description');
-  //   } else if (enterClientWorkerNo === '') {
-  //     Alert.alert('Error', 'Enter Client Worker No');
-  //   } else {
-  //     const Sumbited =
-  //       selectNatureofComplaint === 'technical problem'
-  //         ? 'Rise your Complaints'
-  //         : 'Form Submited succesfully!';
-  //     Alert.alert('Success', Sumbited);
-  //   }
-  // };
+      setselectNatureofComplaint('');
+      setswitches('');
+      setselectPriority('');
+      setsmartSwitch('');
+      setenterDescription('');
+      setenterClientWorkerNo('');
+    }
+  };
 
   return (
     <View
@@ -90,7 +63,10 @@ console.log(datas,"DATAS")
         width: '100%',
         justifyContent: 'center',
         alignSelf: 'center',
+        flex: 1,        
+        padding: 10,
       }}>
+
       <Text
         style={{
           backgroundColor: '#fffefe',
@@ -102,57 +78,83 @@ console.log(datas,"DATAS")
         }}>
         Complaint Details
       </Text>
+
       <View
         style={{
           flexDirection: 'column',
           width: '94%',
           justifyContent: 'center',
           alignSelf: 'center',
+          flexShrink: 0,
         }}>
+
         <TextInput
-          onChangeText={text => setselectNatureofComplaint (text)} 
-          
+          onChangeText={text => setselectNatureofComplaint (text)} value={selectNatureofComplaint}
           style={{borderWidth: 1, borderColor: '#0073ff', borderRadius: 10, color:'#0073ff'}}
           placeholder="Select Nature of Complaint"
           placeholderTextColor="#000000"></TextInput>
         <View style={{height: 20}} />
         <TextInput
-          onChangeText={text => setswitches (text)} 
+          onChangeText={text => setswitches (text)} value={switches}
           style={{borderWidth: 1, borderColor: '#0073ff', borderRadius: 10,color:'#0073ff'}}
           placeholder="Switches"
           placeholderTextColor="#000000"></TextInput>
         <View style={{height: 20}} />
-        <TextInput 
-          onChangeText={text => setselectPriority (text)} 
+        <TextInput
+          onChangeText={text => setselectPriority (text)} value={selectPriority}
           style={{borderWidth: 1, borderColor: '#0073ff', borderRadius: 10,color:'#0073ff'}}
           placeholder="Select Priority"
           placeholderTextColor="#000000"></TextInput>
         <View style={{height: 20}} />
         <TextInput
-          onChangeText={text => setsmartSwitch  (text)}  
+          onChangeText={text => setsmartSwitch  (text)}  value={smartSwitch}
           style={{borderWidth: 1, borderColor: '#0073ff', borderRadius: 10,color:'#0073ff'}}
           placeholder="Smart Switch"
           placeholderTextColor="#000000"></TextInput>
         <View style={{height: 20}} />
         <TextInput
-          onChangeText={text => setenterDescription (text)} 
+          onChangeText={text => setenterDescription (text)} value={enterDescription}
           style={{borderWidth: 1, borderColor: '#0073ff', borderRadius: 10,color:'#0073ff'}}
           placeholder="Enter Description"
           placeholderTextColor="#000000"></TextInput>
         <View style={{height: 20}} />
         <TextInput
-          onChangeText={text => setenterClientWorkerNo  (text)} 
+          onChangeText={text => setenterClientWorkerNo  (text)} value={enterClientWorkerNo}
           style={{borderWidth: 1, borderColor: '#0073ff', borderRadius: 10,color:'#0073ff'}}
           placeholder="Enter Client Worker No"
           placeholderTextColor="#000000"></TextInput>
         <View style={{height: 20}} />
 
         <View style={styles.buttonwrapper}>
-          <Button title="Submit" onPress={handlePress}  color="#0073ff" />
+          <Button title="Submit" onPress={handlePress} color="#0073ff" />
         </View>
       </View>
-    </View>
 
+      {/* WRAP THE CARDS IN A SCROLLVIEW inside a View with flex:1 and same width */}
+      <View style={{flex: 1, width: '94%', alignSelf: 'center', marginTop: 20}}>
+        <ScrollView>
+          {submittedCards.map(item => (
+            <View  style={{
+              borderWidth: 1,
+              borderColor: '#0073ff',
+              borderRadius: 10,
+              padding: 10,
+              marginVertical: 10,
+              backgroundColor: '#f0f8ff',
+            }}>
+              <Text style={{color: '#0073ff', fontWeight: '600', marginBottom: 5}}>Submitted:</Text>
+              <Text>Nature of Complaint: {item.selectNatureofComplaint}</Text>
+              <Text>Switches: {item.switches}</Text>
+              <Text>Priority: {item.selectPriority}</Text>
+              <Text>Smart Switch: {item.smartSwitch}</Text>
+              <Text>Description: {item.enterDescription}</Text>
+              <Text>Client Worker No: {item.enterClientWorkerNo}</Text>
+            </View>
+          ))}
+        </ScrollView>
+      </View>
+
+    </View>
   );
 };
 
