@@ -197,6 +197,7 @@ const Break = () => {
                 borderWidth: 1,
                 width: '100%',
                 height: 220,
+                marginTop:20,
                 alignItems: 'center',
                 padding: 10,
                 justifyContent: 'center',
@@ -234,7 +235,7 @@ const Break = () => {
                     justifyContent: 'center',
                     alignSelf: 'center',
                   }}>
-                  <Text style={{fontSize: 17, fontWeight: '600'}}>
+                  <Text style={{fontSize: 17, fontWeight: '600',color:'#000000'}}>
                     Nature of Complaint
                   </Text>
                 </View>
@@ -245,7 +246,7 @@ const Break = () => {
                     justifyContent: 'center',
                     alignSelf: 'center',
                   }}>
-                  <Text style={{fontSize: 17, fontWeight: '600'}}>
+                  <Text style={{fontSize: 17, fontWeight: '600',color:'#0073ff'}}>
                     : {item.selectNatureofComplaint}
                   </Text>
                 </View>
@@ -277,7 +278,7 @@ const Break = () => {
                     justifyContent: 'center',
                     alignSelf: 'center',
                   }}>
-                  <Text style={{fontSize: 17, fontWeight: '600'}}>
+                  <Text style={{fontSize: 17, fontWeight: '600',color:'#000000'}}>
                     Switches
                   </Text>
                 </View>
@@ -288,7 +289,7 @@ const Break = () => {
                     justifyContent: 'center',
                     alignSelf: 'center',
                   }}>
-                  <Text style={{fontSize: 17, fontWeight: '600'}}>
+                  <Text style={{fontSize: 17, fontWeight: '600',color:'#0073ff'}}>
                     : {item.switches}
                   </Text>
                 </View>
@@ -320,7 +321,7 @@ const Break = () => {
                     justifyContent: 'center',
                     alignSelf: 'center',
                   }}>
-                  <Text style={{fontSize: 17, fontWeight: '600'}}>
+                  <Text style={{fontSize: 17, fontWeight: '600',color:'#000000'}}>
                     Priority
                   </Text>
                 </View>
@@ -331,7 +332,7 @@ const Break = () => {
                     justifyContent: 'center',
                     alignSelf: 'center',
                   }}>
-                  <Text style={{fontSize: 17, fontWeight: '600'}}>
+                  <Text style={{fontSize: 17, fontWeight: '600',color:'#0073ff'}}>
                     : {item.selectPriority}
                   </Text>
                 </View>
@@ -367,7 +368,7 @@ const Break = () => {
                     justifyContent: 'center',
                     alignSelf: 'center',
                   }}>
-                  <Text style={{fontSize: 17, fontWeight: '600'}}>
+                  <Text style={{fontSize: 17, fontWeight: '600',color:'#000000'}}>
                     Smart Switch
                   </Text>
                 </View>
@@ -378,7 +379,7 @@ const Break = () => {
                     justifyContent: 'center',
                     alignSelf: 'center',
                   }}>
-                  <Text style={{fontSize: 17, fontWeight: '600'}}>
+                  <Text style={{fontSize: 17, fontWeight: '600',color:'#0073ff'}}>
                     : {item.smartSwitch}
                   </Text>
                 </View>
@@ -410,7 +411,7 @@ const Break = () => {
                     justifyContent: 'center',
                     alignSelf: 'center',
                   }}>
-                  <Text style={{fontSize: 16, fontWeight: '600'}}>
+                  <Text style={{fontSize: 16, fontWeight: '600',color:'#000000'}}>
                     Description
                   </Text>
                 </View>
@@ -421,7 +422,7 @@ const Break = () => {
                     justifyContent: 'center',
                     alignSelf: 'center',
                   }}>
-                  <Text style={{fontSize: 17, fontWeight: '500'}}>
+                  <Text style={{fontSize: 17, fontWeight: '500',color:'#0073ff'}}>
                     : {item.enterDescription}
                   </Text>
                 </View>
@@ -455,7 +456,7 @@ const Break = () => {
                     justifyContent: 'center',
                     alignSelf: 'center',
                   }}>
-                  <Text style={{fontSize: 17, fontWeight: '500'}}>
+                  <Text style={{fontSize: 17, fontWeight: '500',color:'##000000'}}>
                     Client Worker No
                   </Text>
                 </View>
@@ -466,12 +467,12 @@ const Break = () => {
                     justifyContent: 'center',
                     alignSelf: 'center',
                   }}>
-                  <Text style={{fontSize: 16, fontWeight: '600'}}>
+                  <Text style={{fontSize: 16, fontWeight: '600',color:'#0073ff'}}>
                     : {item.enterClientWorkerNo}
                   </Text>
                 </View>
               </View>
-              <View style={{height: 10}} />
+              <View style={{height: 0}} />
 
               {/* <Text style={{color: '#0073ff', fontWeight: '800', marginBottom: 5,textDecorationLine:'underline'}}>Submitted:</Text>
               <Text>Nature of Complaint: {item.selectNatureofComplaint}</Text>
