@@ -1,0 +1,325 @@
+# Breakdown pages
+
+#   {/* <View style={{flex: 1, width: '94%', alignSelf: 'center', marginTop: 20}}>
+#      <ScrollView>
+#           {submittedCards.map(item => (
+#             <View
+#               style={{
+#                 borderWidth: 1,
+#                 width: '100%',
+#                 height: 220,
+#                 marginTop:20,
+#                 alignItems: 'center',
+#                 padding: 10,
+#                 justifyContent: 'center',
+#                 alignSelf: 'center',
+#                 borderRadius: 10,
+#               }}>
+#               <View
+#                 style={{
+#                   width: '100%',
+#                   height: 20,
+#                   flexDirection: 'row',
+#                   justifyContent: 'space-around',
+#                   alignSelf: 'center',
+#                 }}>
+#                 <View
+#                   style={{
+#                     width: '10%',
+#                     height: 28,
+
+#                     justifyContent: 'center',
+#                     alignItems: 'center',
+#                     alignSelf: 'center',
+#                   }}>
+#                   <Icon3
+#                     name="file-document-edit-outline"
+#                     size={30}
+#                     color="#0073ff"
+#                   />
+#                 </View>
+
+#                 <View
+#                   style={{
+#                     width: '41%',
+#                     height: 20,
+#                     justifyContent: 'center',
+#                     alignSelf: 'center',
+#                   }}>
+#                   <Text style={{fontSize: 17, fontWeight: '600',color:'#000000'}}>
+#                     Nature of Complaint
+#                   </Text>
+#                 </View>
+#                 <View
+#                   style={{
+#                     width: '41%',
+#                     height: 20,
+#                     justifyContent: 'center',
+#                     alignSelf: 'center',
+#                   }}>
+#                   <Text style={{fontSize: 17, fontWeight: '600',color:'#0073ff'}}>
+#                     : {item.selectNatureofComplaint}
+#                   </Text>
+#                 </View>
+#               </View>
+#               <View style={{height: 10}} />
+#               <View
+#                 style={{
+#                   width: '100%',
+#                   height: 20,
+#                   flexDirection: 'row',
+#                   justifyContent: 'space-around',
+#                   alignSelf: 'center',
+#                 }}>
+#                 <View
+#                   style={{
+#                     width: '10%',
+#                     height: 28,
+
+#                     justifyContent: 'center',
+#                     alignItems: 'center',
+#                     alignSelf: 'center',
+#                   }}>
+#                   <Icon3 name="switch" size={30} color="#0073ff" />
+#                 </View>
+#                 <View
+#                   style={{
+#                     width: '41%',
+#                     height: 20,
+#                     justifyContent: 'center',
+#                     alignSelf: 'center',
+#                   }}>
+#                   <Text style={{fontSize: 17, fontWeight: '600',color:'#000000'}}>
+#                     Switches
+#                   </Text>
+#                 </View>
+#                 <View
+#                   style={{
+#                     width: '41%',
+#                     height: 20,
+#                     justifyContent: 'center',
+#                     alignSelf: 'center',
+#                   }}>
+#                   <Text style={{fontSize: 17, fontWeight: '600',color:'#0073ff'}}>
+#                     : {item.switches}
+#                   </Text>
+#                 </View>
+#               </View>
+#               <View style={{height: 10}} />
+#               <View
+#                 style={{
+#                   width: '100%',
+#                   height: 20,
+#                   flexDirection: 'row',
+#                   justifyContent: 'space-around',
+#                   alignSelf: 'center',
+#                 }}>
+#                 <View
+#                   style={{
+#                     width: '10%',
+#                     height: 28,
+
+#                     justifyContent: 'center',
+#                     alignItems: 'center',
+#                     alignSelf: 'center',
+#                   }}>
+#                   <Icon3 name="priority-high" size={30} color="#0073ff" />
+#                 </View>
+#                 <View
+#                   style={{
+#                     width: '41%',
+#                     height: 20,
+#                     justifyContent: 'center',
+#                     alignSelf: 'center',
+#                   }}>
+#                   <Text style={{fontSize: 17, fontWeight: '600',color:'#000000'}}>
+#                     Priority
+#                   </Text>
+#                 </View>
+#                 <View
+#                   style={{
+#                     width: '41%',
+#                     height: 20,
+#                     justifyContent: 'center',
+#                     alignSelf: 'center',
+#                   }}>
+#                   <Text style={{fontSize: 17, fontWeight: '600',color:'#0073ff'}}>
+#                     : {item.selectPriority}
+#                   </Text>
+#                 </View>
+#               </View>
+#               <View style={{height: 10}} />
+#               <View
+#                 style={{
+#                   width: '100%',
+#                   height: 20,
+#                   flexDirection: 'row',
+#                   justifyContent: 'space-around',
+#                   alignSelf: 'center',
+#                 }}>
+#                 <View
+#                   style={{
+#                     width: '10%',
+#                     height: 28,
+
+#                     justifyContent: 'center',
+#                     alignSelf: 'center',
+#                     alignItems: 'center',
+#                   }}>
+#                   <MaterialIcons
+#                     name="smart-button"
+#                     size={30}
+#                     color="#0073ff"
+#                   />
+#                 </View>
+#                 <View
+#                   style={{
+#                     width: '41%',
+#                     height: 20,
+#                     justifyContent: 'center',
+#                     alignSelf: 'center',
+#                   }}>
+#                   <Text style={{fontSize: 17, fontWeight: '600',color:'#000000'}}>
+#                     Smart Switch
+#                   </Text>
+#                 </View>
+#                 <View
+#                   style={{
+#                     width: '41%',
+#                     height: 20,
+#                     justifyContent: 'center',
+#                     alignSelf: 'center',
+#                   }}>
+#                   <Text style={{fontSize: 17, fontWeight: '600',color:'#0073ff'}}>
+#                     : {item.smartSwitch}
+#                   </Text>
+#                 </View>
+#               </View>
+#               <View style={{height: 10}} />
+#               <View
+#                 style={{
+#                   width: '100%',
+#                   height: 20,
+#                   flexDirection: 'row',
+#                   justifyContent: 'space-around',
+#                   alignSelf: 'center',
+#                 }}>
+#                 <View
+#                   style={{
+#                     width: '10%',
+#                     height: 28,
+
+#                     justifyContent: 'center',
+#                     alignSelf: 'center',
+#                     alignItems: 'center',
+#                   }}>
+#                   <MaterialIcons name="description" size={30} color="#0073ff" />
+#                 </View>
+#                 <View
+#                   style={{
+#                     width: '41%',
+#                     height: 20,
+#                     justifyContent: 'center',
+#                     alignSelf: 'center',
+#                   }}>
+#                   <Text style={{fontSize: 16, fontWeight: '600',color:'#000000'}}>
+#                     Description
+#                   </Text>
+#                 </View>
+#                 <View
+#                   style={{
+#                     width: '41%',
+#                     height: 20,
+#                     justifyContent: 'center',
+#                     alignSelf: 'center',
+#                   }}>
+#                   <Text style={{fontSize: 17, fontWeight: '500',color:'#0073ff'}}>
+#                     : {item.enterDescription}
+#                   </Text>
+#                 </View>
+#               </View>
+#               <View style={{height: 10}} />
+#               <View
+#                 style={{
+#                   width: '100%',
+#                   height: 20,
+#                   flexDirection: 'row',
+#                   justifyContent: 'space-around',
+#                   alignSelf: 'center',
+#                 }}>
+#                 <View
+#                   style={{
+#                     width: '10%',
+#                     height: 28,
+#                     justifyContent: 'center',
+#                     alignSelf: 'center',
+#                   }}>
+#                   <Icon3
+#                     name="format-list-numbered"
+#                     size={30}
+#                     color="#0073ff"
+#                   />
+#                 </View>
+#                 <View
+#                   style={{
+#                     width: '41%',
+#                     height: 20,
+#                     justifyContent: 'center',
+#                     alignSelf: 'center',
+#                   }}>
+#                   <Text style={{fontSize: 17, fontWeight: '500',color:'##000000'}}>
+#                     Client Worker No
+#                   </Text>
+#                 </View>
+#                 <View
+#                   style={{
+#                     width: '41%',
+#                     height: 20,
+#                     justifyContent: 'center',
+#                     alignSelf: 'center',
+#                   }}>
+#                   <Text style={{fontSize: 16, fontWeight: '600',color:'#0073ff'}}>
+#                     : {item.enterClientWorkerNo}
+#                   </Text>
+#                 </View>
+#               </View>
+#               <View style={{height: 0}} />
+
+         
+#             </View>
+#           ))}
+#         </ScrollView>
+#       </View> */}
+
+
+
+### ========================= ###
+#  /* ***********====================JAVASCRIPT=========================== ******/
+#   // let selectNatureofComplaint = '';
+#   // let switches = '';
+#   // let selectPriority = '';
+#   // let smartSwitch = '';
+#   // let enterDescription = '';
+#   // let enterClientWorkerNo = '';
+
+#   // const handlePress = () => {
+#   //   if (selectNatureofComplaint == '') {
+#   //     Alert.alert('Error', 'Select Nature of Complaint');
+#   //   } else if (switches === '') {
+#   //     Alert.alert('Error', 'Switches');
+#   //   } else if (selectPriority == '') {
+#   //     Alert.alert('Error', 'Select Priority');
+#   //   } else if (smartSwitch === '') {
+#   //     Alert.alert('Error', 'Smart Switch');
+#   //   } else if (enterDescription == '') {
+#   //     Alert.alert('Error', 'Enter Description');
+#   //   } else if (enterClientWorkerNo === '') {
+#   //     Alert.alert('Error', 'Enter Client Worker No');
+#   //   } else {
+#   //     const Sumbited =
+#   //       selectNatureofComplaint === 'technical problem'
+#   //         ? 'Rise your Complaints'
+#   //         : 'Form Submited succesfully!';
+#   //     Alert.alert('Success', Sumbited);
+#   //   }
+#   // };

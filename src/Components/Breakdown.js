@@ -1,18 +1,36 @@
 import {StyleSheet, Text, View, Button, Alert, ScrollView} from 'react-native';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {TextInput} from 'react-native-gesture-handler';
-import Icon3 from 'react-native-vector-icons/MaterialCommunityIcons';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
-const Break = () => {
+import {useNavigation} from '@react-navigation/native';
+
+const Break = ({route}) => {
+  // const [submittedCards, setSubmittedCards] = useState([]);
+const { editData, editIndex } = route.params || {};
+
+useEffect(() => {
+  if (editData) {
+    setselectNatureofComplaint(editData.selectNatureofComplaint || '');
+    setswitches(editData.switches || '');
+    setselectPriority(editData.selectPriority || '');
+    setsmartSwitch(editData.smartSwitch || '');
+    setenterDescription(editData.enterDescription || '');
+    setenterClientWorkerNo(editData.enterClientWorkerNo || '');
+  }
+}, [editData]);
+
+
+
+
+
+  const navigation = useNavigation();
+
   const [selectNatureofComplaint, setselectNatureofComplaint] = useState('');
   const [switches, setswitches] = useState('');
   const [selectPriority, setselectPriority] = useState('');
   const [smartSwitch, setsmartSwitch] = useState('');
   const [enterDescription, setenterDescription] = useState('');
   const [enterClientWorkerNo, setenterClientWorkerNo] = useState('');
-
-  const [submittedCards, setSubmittedCards] = useState([]);
 
   const handlePress = () => {
     if (selectNatureofComplaint === '') {
@@ -28,19 +46,29 @@ const Break = () => {
     } else if (enterClientWorkerNo == '') {
       Alert.alert('Error', 'Enter Client Worker No');
     } else {
-      const Submitedddd =
-        selectNatureofComplaint == 'tech' ? 'Rise complaint' : 'Successfully';
-      Alert.alert('Success', Submitedddd);
-
       const newCard = {
         selectNatureofComplaint,
+          id: Date.now().toString(),  
         switches,
         selectPriority,
         smartSwitch,
         enterDescription,
         enterClientWorkerNo,
       };
-      setSubmittedCards(prev => [newCard, ...prev]);
+
+      const Submitedddd =
+        'Successfully submitted';
+      Alert.alert('Success', Submitedddd, [
+        {
+          text: 'OK',
+          onPress: () => {
+        navigation.navigate('Breakdown', editData
+  ? { editedCard: newCard, editIndex }
+  : { submittedCards: [newCard] }
+);
+          },
+        },
+      ]);
 
       setselectNatureofComplaint('');
       setswitches('');
@@ -48,39 +76,12 @@ const Break = () => {
       setsmartSwitch('');
       setenterDescription('');
       setenterClientWorkerNo('');
+
+      // setSubmittedCards(prev => [newCard, ...prev]);
     }
   };
 
-  /* ***********====================JAVASCRIPT=========================== ******/
-  // let selectNatureofComplaint = '';
-  // let switches = '';
-  // let selectPriority = '';
-  // let smartSwitch = '';
-  // let enterDescription = '';
-  // let enterClientWorkerNo = '';
-
-  // const handlePress = () => {
-  //   if (selectNatureofComplaint == '') {
-  //     Alert.alert('Error', 'Select Nature of Complaint');
-  //   } else if (switches === '') {
-  //     Alert.alert('Error', 'Switches');
-  //   } else if (selectPriority == '') {
-  //     Alert.alert('Error', 'Select Priority');
-  //   } else if (smartSwitch === '') {
-  //     Alert.alert('Error', 'Smart Switch');
-  //   } else if (enterDescription == '') {
-  //     Alert.alert('Error', 'Enter Description');
-  //   } else if (enterClientWorkerNo === '') {
-  //     Alert.alert('Error', 'Enter Client Worker No');
-  //   } else {
-  //     const Sumbited =
-  //       selectNatureofComplaint === 'technical problem'
-  //         ? 'Rise your Complaints'
-  //         : 'Form Submited succesfully!';
-  //     Alert.alert('Success', Sumbited);
-  //   }
-  // };
-
+ 
   return (
     <View
       style={{
@@ -88,8 +89,8 @@ const Break = () => {
         width: '100%',
         justifyContent: 'center',
         alignSelf: 'center',
-        flex: 1,
-        padding: 10,
+        // flex: 1,
+        padding: 5,
       }}>
       <Text
         style={{
@@ -109,7 +110,7 @@ const Break = () => {
           width: '94%',
           justifyContent: 'center',
           alignSelf: 'center',
-          flexShrink: 0,
+          // flexShrink: 0,
         }}>
         <TextInput
           onChangeText={text => setselectNatureofComplaint(text)}
@@ -189,302 +190,7 @@ const Break = () => {
         </View>
       </View>
 
-      <View style={{flex: 1, width: '94%', alignSelf: 'center', marginTop: 20}}>
-        <ScrollView>
-          {submittedCards.map(item => (
-            <View
-              style={{
-                borderWidth: 1,
-                width: '100%',
-                height: 220,
-                marginTop:20,
-                alignItems: 'center',
-                padding: 10,
-                justifyContent: 'center',
-                alignSelf: 'center',
-                borderRadius: 10,
-              }}>
-              <View
-                style={{
-                  width: '100%',
-                  height: 20,
-                  flexDirection: 'row',
-                  justifyContent: 'space-around',
-                  alignSelf: 'center',
-                }}>
-                <View
-                  style={{
-                    width: '10%',
-                    height: 28,
-
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    alignSelf: 'center',
-                  }}>
-                  <Icon3
-                    name="file-document-edit-outline"
-                    size={30}
-                    color="#0073ff"
-                  />
-                </View>
-
-                <View
-                  style={{
-                    width: '41%',
-                    height: 20,
-                    justifyContent: 'center',
-                    alignSelf: 'center',
-                  }}>
-                  <Text style={{fontSize: 17, fontWeight: '600',color:'#000000'}}>
-                    Nature of Complaint
-                  </Text>
-                </View>
-                <View
-                  style={{
-                    width: '41%',
-                    height: 20,
-                    justifyContent: 'center',
-                    alignSelf: 'center',
-                  }}>
-                  <Text style={{fontSize: 17, fontWeight: '600',color:'#0073ff'}}>
-                    : {item.selectNatureofComplaint}
-                  </Text>
-                </View>
-              </View>
-              <View style={{height: 10}} />
-              <View
-                style={{
-                  width: '100%',
-                  height: 20,
-                  flexDirection: 'row',
-                  justifyContent: 'space-around',
-                  alignSelf: 'center',
-                }}>
-                <View
-                  style={{
-                    width: '10%',
-                    height: 28,
-
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    alignSelf: 'center',
-                  }}>
-                  <Icon3 name="switch" size={30} color="#0073ff" />
-                </View>
-                <View
-                  style={{
-                    width: '41%',
-                    height: 20,
-                    justifyContent: 'center',
-                    alignSelf: 'center',
-                  }}>
-                  <Text style={{fontSize: 17, fontWeight: '600',color:'#000000'}}>
-                    Switches
-                  </Text>
-                </View>
-                <View
-                  style={{
-                    width: '41%',
-                    height: 20,
-                    justifyContent: 'center',
-                    alignSelf: 'center',
-                  }}>
-                  <Text style={{fontSize: 17, fontWeight: '600',color:'#0073ff'}}>
-                    : {item.switches}
-                  </Text>
-                </View>
-              </View>
-              <View style={{height: 10}} />
-              <View
-                style={{
-                  width: '100%',
-                  height: 20,
-                  flexDirection: 'row',
-                  justifyContent: 'space-around',
-                  alignSelf: 'center',
-                }}>
-                <View
-                  style={{
-                    width: '10%',
-                    height: 28,
-
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    alignSelf: 'center',
-                  }}>
-                  <Icon3 name="priority-high" size={30} color="#0073ff" />
-                </View>
-                <View
-                  style={{
-                    width: '41%',
-                    height: 20,
-                    justifyContent: 'center',
-                    alignSelf: 'center',
-                  }}>
-                  <Text style={{fontSize: 17, fontWeight: '600',color:'#000000'}}>
-                    Priority
-                  </Text>
-                </View>
-                <View
-                  style={{
-                    width: '41%',
-                    height: 20,
-                    justifyContent: 'center',
-                    alignSelf: 'center',
-                  }}>
-                  <Text style={{fontSize: 17, fontWeight: '600',color:'#0073ff'}}>
-                    : {item.selectPriority}
-                  </Text>
-                </View>
-              </View>
-              <View style={{height: 10}} />
-              <View
-                style={{
-                  width: '100%',
-                  height: 20,
-                  flexDirection: 'row',
-                  justifyContent: 'space-around',
-                  alignSelf: 'center',
-                }}>
-                <View
-                  style={{
-                    width: '10%',
-                    height: 28,
-
-                    justifyContent: 'center',
-                    alignSelf: 'center',
-                    alignItems: 'center',
-                  }}>
-                  <MaterialIcons
-                    name="smart-button"
-                    size={30}
-                    color="#0073ff"
-                  />
-                </View>
-                <View
-                  style={{
-                    width: '41%',
-                    height: 20,
-                    justifyContent: 'center',
-                    alignSelf: 'center',
-                  }}>
-                  <Text style={{fontSize: 17, fontWeight: '600',color:'#000000'}}>
-                    Smart Switch
-                  </Text>
-                </View>
-                <View
-                  style={{
-                    width: '41%',
-                    height: 20,
-                    justifyContent: 'center',
-                    alignSelf: 'center',
-                  }}>
-                  <Text style={{fontSize: 17, fontWeight: '600',color:'#0073ff'}}>
-                    : {item.smartSwitch}
-                  </Text>
-                </View>
-              </View>
-              <View style={{height: 10}} />
-              <View
-                style={{
-                  width: '100%',
-                  height: 20,
-                  flexDirection: 'row',
-                  justifyContent: 'space-around',
-                  alignSelf: 'center',
-                }}>
-                <View
-                  style={{
-                    width: '10%',
-                    height: 28,
-
-                    justifyContent: 'center',
-                    alignSelf: 'center',
-                    alignItems: 'center',
-                  }}>
-                  <MaterialIcons name="description" size={30} color="#0073ff" />
-                </View>
-                <View
-                  style={{
-                    width: '41%',
-                    height: 20,
-                    justifyContent: 'center',
-                    alignSelf: 'center',
-                  }}>
-                  <Text style={{fontSize: 16, fontWeight: '600',color:'#000000'}}>
-                    Description
-                  </Text>
-                </View>
-                <View
-                  style={{
-                    width: '41%',
-                    height: 20,
-                    justifyContent: 'center',
-                    alignSelf: 'center',
-                  }}>
-                  <Text style={{fontSize: 17, fontWeight: '500',color:'#0073ff'}}>
-                    : {item.enterDescription}
-                  </Text>
-                </View>
-              </View>
-              <View style={{height: 10}} />
-              <View
-                style={{
-                  width: '100%',
-                  height: 20,
-                  flexDirection: 'row',
-                  justifyContent: 'space-around',
-                  alignSelf: 'center',
-                }}>
-                <View
-                  style={{
-                    width: '10%',
-                    height: 28,
-                    justifyContent: 'center',
-                    alignSelf: 'center',
-                  }}>
-                  <Icon3
-                    name="format-list-numbered"
-                    size={30}
-                    color="#0073ff"
-                  />
-                </View>
-                <View
-                  style={{
-                    width: '41%',
-                    height: 20,
-                    justifyContent: 'center',
-                    alignSelf: 'center',
-                  }}>
-                  <Text style={{fontSize: 17, fontWeight: '500',color:'##000000'}}>
-                    Client Worker No
-                  </Text>
-                </View>
-                <View
-                  style={{
-                    width: '41%',
-                    height: 20,
-                    justifyContent: 'center',
-                    alignSelf: 'center',
-                  }}>
-                  <Text style={{fontSize: 16, fontWeight: '600',color:'#0073ff'}}>
-                    : {item.enterClientWorkerNo}
-                  </Text>
-                </View>
-              </View>
-              <View style={{height: 0}} />
-
-              {/* <Text style={{color: '#0073ff', fontWeight: '800', marginBottom: 5,textDecorationLine:'underline'}}>Submitted:</Text>
-              <Text>Nature of Complaint: {item.selectNatureofComplaint}</Text>
-              <Text>Switches: {item.style=switches}</Text>
-              <Text>Priority: {item.selectPriority}</Text>
-              <Text>Smart Switch: {item.smartSwitch}</Text>
-              <Text>Description: {item.enterDescription}</Text>
-              <Text>Client Worker No: {item.enterClientWorkerNo}</Text> */}
-            </View>
-          ))}
-        </ScrollView>
-      </View>
+    
     </View>
   );
 };
