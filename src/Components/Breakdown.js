@@ -18,13 +18,7 @@ useEffect(() => {
     setenterClientWorkerNo(editData.enterClientWorkerNo || '');
   }
 }, [editData]);
-
-
-
-
-
-  const navigation = useNavigation();
-
+ const navigation = useNavigation();
   const [selectNatureofComplaint, setselectNatureofComplaint] = useState('');
   const [switches, setswitches] = useState('');
   const [selectPriority, setselectPriority] = useState('');
@@ -69,7 +63,6 @@ useEffect(() => {
           },
         },
       ]);
-
       setselectNatureofComplaint('');
       setswitches('');
       setselectPriority('');
@@ -80,8 +73,6 @@ useEffect(() => {
       // setSubmittedCards(prev => [newCard, ...prev]);
     }
   };
-
- 
   return (
     <View
       style={{
@@ -194,7 +185,6 @@ useEffect(() => {
     </View>
   );
 };
-
 export default Break;
 
 const styles = StyleSheet.create({

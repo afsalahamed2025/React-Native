@@ -2,10 +2,11 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 const Profile = ({ navigation }) => {
   const Tiles_to_Move = [
-    { id: 1, Tilename: 'Main',  Navigation: 'Main', color: 'lightgreen' },
-    { id: 2, Tilename: 'Lists', Navigation: 'Lists', color: 'lightblue' },
-    { id: 3, Tilename: 'Login', Navigation: 'Login', color: 'lightyellow' },
-    { id: 4, Tilename: 'Design', Navigation: 'Design', color: 'blue' },
+    // { id: 1, Tilename: 'Main',  Navigation: 'Main', color: '#000000' },
+    // { id: 2, Tilename: 'Lists', Navigation: 'Lists', color: '#000000' },
+    // { id: 4, Tilename: 'Design', Navigation: 'Design', color: '#000000' },
+    { id: 3, Tilename: 'Login', Navigation: 'Login', color: '#000000' },
+    { id: 5, Tilename: 'Async', Navigation: 'Async', color: '#000000' },
   ]
 
   return (
@@ -61,6 +62,6 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 16,
     fontWeight: '900',
-    color:'red',
+    color:'#00ff08',
   },
 })

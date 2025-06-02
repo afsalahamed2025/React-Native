@@ -1,0 +1,335 @@
+    <View style={{width: '94%', justifyContent: 'center', alignSelf: 'center'}}>
+     
+      {submittedCards.map((item,index) => (
+        <View
+          key={item.id}
+          style={{
+            borderWidth: 1,
+            width: '100%',
+            alignItems: 'center',
+            padding: 10,
+            justifyContent: 'center',
+            alignSelf: 'center',
+            borderRadius: 10,
+          }}>
+          <View
+            style={{
+              width: '100%',
+              height: 20,
+              flexDirection: 'row',
+              justifyContent: 'space-around',
+              alignSelf: 'center',
+            }}>
+            <View
+              style={{
+                width: '10%',
+                height: 28,
+
+                justifyContent: 'center',
+                alignItems: 'center',
+                alignSelf: 'center',
+              }}>
+              <Icon3
+                name="file-document-edit-outline"
+                size={30}
+                color="#0073ff"
+              />
+            </View>
+
+            <View
+              style={{
+                width: '41%',
+                height: 20,
+                justifyContent: 'center',
+                alignSelf: 'center',
+              }}>
+              <Text style={{fontSize: 17, fontWeight: '600', color: '#000000'}}>
+                Nature of Complaint
+              </Text>
+            </View>
+            <View
+              style={{
+                width: '41%',
+                height: 20,
+                justifyContent: 'center',
+                alignSelf: 'center',
+              }}>
+              <Text style={{fontSize: 17, fontWeight: '600', color: '#0073ff'}}>
+                : {item.selectNatureofComplaint}
+              </Text>
+            </View>
+          </View>
+          <View style={{height: 10}} />
+          <View
+            style={{
+              width: '100%',
+              height: 20,
+              flexDirection: 'row',
+              justifyContent: 'space-around',
+              alignSelf: 'center',
+            }}>
+            <View
+              style={{
+                width: '10%',
+                height: 28,
+
+                justifyContent: 'center',
+                alignItems: 'center',
+                alignSelf: 'center',
+              }}>
+              <Icon3 name="switch" size={30} color="#0073ff" />
+            </View>
+            <View
+              style={{
+                width: '41%',
+                height: 20,
+                justifyContent: 'center',
+                alignSelf: 'center',
+              }}>
+              <Text style={{fontSize: 17, fontWeight: '600', color: '#000000'}}>
+                Switches
+              </Text>
+            </View>
+            <View
+              style={{
+                width: '41%',
+                height: 20,
+                justifyContent: 'center',
+                alignSelf: 'center',
+              }}>
+              <Text style={{fontSize: 17, fontWeight: '600', color: '#0073ff'}}>
+                : {item.switches}
+              </Text>
+            </View>
+          </View>
+          <View style={{height: 10}} />
+          <View
+            style={{
+              width: '100%',
+              height: 20,
+              flexDirection: 'row',
+              justifyContent: 'space-around',
+              alignSelf: 'center',
+            }}>
+            <View
+              style={{
+                width: '10%',
+                height: 28,
+
+                justifyContent: 'center',
+                alignItems: 'center',
+                alignSelf: 'center',
+              }}>
+              <Icon3 name="priority-high" size={30} color="#0073ff" />
+            </View>
+            <View
+              style={{
+                width: '41%',
+                height: 20,
+                justifyContent: 'center',
+                alignSelf: 'center',
+              }}>
+              <Text style={{fontSize: 17, fontWeight: '600', color: '#000000'}}>
+                Priority
+              </Text>
+            </View>
+            <View
+              style={{
+                width: '41%',
+                height: 20,
+                justifyContent: 'center',
+                alignSelf: 'center',
+              }}>
+              <Text style={{fontSize: 17, fontWeight: '600', color: '#0073ff'}}>
+                : {item.selectPriority}
+              </Text>
+            </View>
+          </View>
+          <View style={{height: 10}} />
+          <View
+            style={{
+              width: '100%',
+              height: 20,
+              flexDirection: 'row',
+              justifyContent: 'space-around',
+              alignSelf: 'center',
+            }}>
+            <View
+              style={{
+                width: '10%',
+                height: 28,
+
+                justifyContent: 'center',
+                alignSelf: 'center',
+                alignItems: 'center',
+              }}>
+              <MaterialIcons name="smart-button" size={30} color="#0073ff" />
+            </View>
+            <View
+              style={{
+                width: '41%',
+                height: 20,
+                justifyContent: 'center',
+                alignSelf: 'center',
+              }}>
+              <Text style={{fontSize: 17, fontWeight: '600', color: '#000000'}}>
+                Smart Switch
+              </Text>
+            </View>
+            <View
+              style={{
+                width: '41%',
+                height: 20,
+                justifyContent: 'center',
+                alignSelf: 'center',
+              }}>
+              <Text style={{fontSize: 17, fontWeight: '600', color: '#0073ff'}}>
+                : {item.smartSwitch}
+              </Text>
+            </View>
+          </View>
+          <View style={{height: 10}} />
+          <View
+            style={{
+              width: '100%',
+              height: 20,
+              flexDirection: 'row',
+              justifyContent: 'space-around',
+              alignSelf: 'center',
+            }}>
+            <View
+              style={{
+                width: '10%',
+                height: 28,
+
+                justifyContent: 'center',
+                alignSelf: 'center',
+                alignItems: 'center',
+              }}>
+              <MaterialIcons name="description" size={30} color="#0073ff" />
+            </View>
+            <View
+              style={{
+                width: '41%',
+                height: 20,
+                justifyContent: 'center',
+                alignSelf: 'center',
+              }}>
+              <Text style={{fontSize: 16, fontWeight: '600', color: '#000000'}}>
+                Description
+              </Text>
+            </View>
+            <View
+              style={{
+                width: '41%',
+                height: 20,
+                justifyContent: 'center',
+                alignSelf: 'center',
+              }}>
+              <Text style={{fontSize: 17, fontWeight: '500', color: '#0073ff'}}>
+                : {item.enterDescription}
+              </Text>
+            </View>
+          </View>
+          <View style={{height: 10}} />
+          <View
+            style={{
+              width: '100%',
+              height: 20,
+              flexDirection: 'row',
+              justifyContent: 'space-around',
+              alignSelf: 'center',
+            }}>
+            <View
+              style={{
+                width: '10%',
+                height: 28,
+                justifyContent: 'center',
+                alignSelf: 'center',
+              }}>
+              <Icon3 name="format-list-numbered" size={30} color="#0073ff" />
+            </View>
+            <View
+              style={{
+                width: '41%',
+                height: 20,
+                justifyContent: 'center',
+                alignSelf: 'center',
+              }}>
+              <Text style={{fontSize: 17, fontWeight: '500', color: '#black'}}>
+                Client Worker No
+              </Text>
+            </View>
+            <View
+              style={{
+                width: '41%',
+                height: 20,
+                justifyContent: 'center',
+                alignSelf: 'center',
+              }}>
+              <Text style={{fontSize: 16, fontWeight: '600', color: '#0073ff'}}>
+                : {item.enterClientWorkerNo}
+              </Text>
+            </View>
+          </View>
+          <View style={{height: 10}} />
+          <View
+            style={{
+              width: '100%',
+              height: 50,
+              backgroundColor: '#fff',
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <View
+              style={{
+                width: '50%',
+                height: 30,
+                backgroundColor: 'yellow',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <Text
+                style={{
+                  color: '#0073ff',
+                  fontSize: 20,
+                  fontWeight: '600',
+                }}>
+                Complaint Details
+              </Text>
+            </View>
+            <TouchableOpacity
+              style={{
+                width: '25%',
+                height: 30,
+                backgroundColor: 'red',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <Text style={{color: '#00ffe1', fontWeight: '500'}}>Delete</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('Break', {
+                  editData: item,
+                  editIndex: index,
+                });
+              }}
+              style={{
+                width: '25%',
+                height: 30,
+                backgroundColor: '#73ff00',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <Text style={{color: '#000000', fontWeight: '500'}}>Edit</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      ))}
+    </View>
+  );
+};
+
+export default BreakdownCards;

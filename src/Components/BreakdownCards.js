@@ -1,23 +1,92 @@
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import React from 'react';
+import { useState } from 'react';
 import Icon3 from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {useNavigation} from '@react-navigation/native';
 
 const BreakdownCards = ({route}) => {
-const {submittedCards=[],editedCard, editIndex}=route.params || {}
-let updatedCards =  [...submittedCards]
-if( editedCard !== undefined && editIndex !== undefined){
-  updatedCards[editIndex] = editedCard;
-}
- 
   
-  const navigation = useNavigation();
+const {submittedCards=[],editedCard, editIndex}=route.params || {}
+const navigation = useNavigation();
+
+const [cards, setcards] =useState(()=>{
+const tempcards =[...submittedCards];
+  if(editedCard!== undefined && editIndex !== undefined){
+    tempcards[editIndex] =editedCard
+  }
+  return tempcards  
+})
+
+
+const handleDelete =indexToDelete=>{
+  const updated = cards.filter((_,i)=> i !== indexToDelete)
+  setcards(updated)
+}
+
+
+  
 
   return (
+    <>
+    {cards.map((item,index) => (
     <View style={{width: '94%', justifyContent: 'center', alignSelf: 'center'}}>
-     
-      {updatedCards.map((item,index) => (
+      
+      <View
+            style={{
+              width: '100%',
+              height: 50,
+              
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <View
+              style={{
+                width: '50%',
+                height: 30,
+              
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <Text
+                style={{
+                  color: '#0073ff',
+                  fontSize: 20,
+                  fontWeight: '600',
+                }}>
+                Complaint Details
+              </Text>
+            </View>
+            <TouchableOpacity    onPress={() => handleDelete(index)}
+              style={{
+                width: '25%',
+                height: 30,
+                backgroundColor: '#e8e3e3',
+                borderRadius:20,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <Text style={{color: '#ff0000', fontWeight: '700',fontSize:16,}}>Delete</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('Break', {
+                  editData: item,
+                  editIndex: index,
+                });
+              }}
+              style={{
+                width: '25%',
+                height: 30,
+                 backgroundColor: '#e8e3e3',
+                borderRadius:20,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <Text style={{color: '#0073ff', fontWeight: '700', fontSize:16,}}>Edit</Text>
+            </TouchableOpacity>
+          </View>
         <View
           key={item.id}
           style={{
@@ -71,7 +140,7 @@ if( editedCard !== undefined && editIndex !== undefined){
                 justifyContent: 'center',
                 alignSelf: 'center',
               }}>
-              <Text style={{fontSize: 17, fontWeight: '600', color: '#0073ff'}}>
+              <Text style={{fontSize: 17, fontWeight: '600', color: '#0073ff',}}>
                 : {item.selectNatureofComplaint}
               </Text>
             </View>
@@ -273,7 +342,7 @@ if( editedCard !== undefined && editIndex !== undefined){
                 justifyContent: 'center',
                 alignSelf: 'center',
               }}>
-              <Text style={{fontSize: 17, fontWeight: '500', color: '#black'}}>
+              <Text style={{fontSize: 17, fontWeight: '500', color: '#000000'}}>
                 Client Worker No
               </Text>
             </View>
@@ -290,62 +359,12 @@ if( editedCard !== undefined && editIndex !== undefined){
             </View>
           </View>
           <View style={{height: 10}} />
-          <View
-            style={{
-              width: '100%',
-              height: 50,
-              backgroundColor: '#fff',
-              flexDirection: 'row',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-            <View
-              style={{
-                width: '50%',
-                height: 30,
-                backgroundColor: 'yellow',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
-              <Text
-                style={{
-                  color: '#0073ff',
-                  fontSize: 20,
-                  fontWeight: '600',
-                }}>
-                Complaint Details
-              </Text>
-            </View>
-            <TouchableOpacity
-              style={{
-                width: '25%',
-                height: 30,
-                backgroundColor: 'red',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
-              <Text style={{color: '#00ffe1', fontWeight: '500'}}>Delete</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate('Break', {
-                  editData: item,
-                  editIndex: index,
-                });
-              }}
-              style={{
-                width: '25%',
-                height: 30,
-                backgroundColor: '#73ff00',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
-              <Text style={{color: '#000000', fontWeight: '500'}}>Edit</Text>
-            </TouchableOpacity>
-          </View>
+         
         </View>
-      ))}
+      
     </View>
+    ))}
+    </>
   );
 };
 
