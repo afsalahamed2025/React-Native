@@ -276,4 +276,5 @@ const styles = StyleSheet.create({
     color: 'green',
     fontWeight: '900',
   },
+  
 });

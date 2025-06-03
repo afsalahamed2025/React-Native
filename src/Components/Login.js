@@ -37,8 +37,8 @@ export default function Login({navigation}) {
       <Text style={styles.title}>Login Page</Text>
       <Image source={require('../assets/image/Login_page_Background.png')} style={styles.image} />
 
-      <TextInput placeholder='Name' onChangeText={setusername} style={styles.input} />
-      <TextInput placeholder='Password' onChangeText={setpassword} secureTextEntry={true} style={styles.input} />
+      <TextInput placeholder='Name' placeholderTextColor='#0073ff' onChangeText={setusername} style={styles.input} />
+      <TextInput placeholder='Password' placeholderTextColor='#0073ff' onChangeText={setpassword} secureTextEntry={true} style={styles.input} />
 
       <Button title='logins' onPress={handlePress} />
 
@@ -72,6 +72,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     paddingHorizontal: 15,
     marginBottom: 8,
+    color:'#0073ff',
     borderRadius: 5,
   },
 });

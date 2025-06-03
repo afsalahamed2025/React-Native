@@ -1,15 +1,25 @@
-import {StyleSheet, Text, View, Button, Alert, ScrollView} from 'react-native';
+import {StyleSheet, Text, View, Button, Alert} from 'react-native';
 import React, {useState, useEffect} from 'react';
 import {TextInput} from 'react-native-gesture-handler';
-
+import  AsyncStorage  from '@react-native-async-storage/async-storage'
 import {useNavigation} from '@react-navigation/native';
 
 const Break = ({route}) => {
   // const [submittedCards, setSubmittedCards] = useState([]);
 const { editData, editIndex } = route.params || {};
+const navigation = useNavigation();
+
+const [selectNatureofComplaint, setselectNatureofComplaint] = useState('');
+const [switches, setswitches] = useState('');
+const [selectPriority, setselectPriority] = useState('');
+const [smartSwitch, setsmartSwitch] = useState('');
+const [enterDescription, setenterDescription] = useState('');
+const [enterClientWorkerNo, setenterClientWorkerNo] = useState('');
 
 useEffect(() => {
   if (editData) {
+
+
     setselectNatureofComplaint(editData.selectNatureofComplaint || '');
     setswitches(editData.switches || '');
     setselectPriority(editData.selectPriority || '');
@@ -18,15 +28,8 @@ useEffect(() => {
     setenterClientWorkerNo(editData.enterClientWorkerNo || '');
   }
 }, [editData]);
- const navigation = useNavigation();
-  const [selectNatureofComplaint, setselectNatureofComplaint] = useState('');
-  const [switches, setswitches] = useState('');
-  const [selectPriority, setselectPriority] = useState('');
-  const [smartSwitch, setsmartSwitch] = useState('');
-  const [enterDescription, setenterDescription] = useState('');
-  const [enterClientWorkerNo, setenterClientWorkerNo] = useState('');
 
-  const handlePress = () => {
+  const handlePress = async () => {
     if (selectNatureofComplaint === '') {
       Alert.alert('Error', 'Please fill in all the fields ');
     } else if (switches == '') {
@@ -42,27 +45,51 @@ useEffect(() => {
     } else {
       const newCard = {
         selectNatureofComplaint,
-          id: Date.now().toString(),  
+          id:Date.now().toString(),  
         switches,
         selectPriority,
         smartSwitch,
         enterDescription,
         enterClientWorkerNo,
       };
+/*============ cards stored data from asyncstorage  key ==========  */
+      try{
+        const stored = await AsyncStorage.getItem('cards');
+/*=========inthule value json format la   irokku atha normal array va convert pannathu illana empty arrat va initial =======  */
+        let cards = stored ? JSON.parse(stored) :[]
+/*============ If editing replace the old card at editIndex with newCard. ==========  */
+        if(editData && editIndex !== undefined){
+          cards[editIndex]=newCard
+        } 
+/*============ edit illana  new data va initialze add pannthu push adding ==========  */
+        else{
+          cards.push (newCard)
+        }
+    await AsyncStorage.setItem('cards',JSON.stringify(cards))
+    Alert.alert('Success','Successfully submitted',[
+      {
+        text:'OK',
+        onPress:()=>navigation.navigate("Breakdown")
+      }
+    ])     
+  } catch(error){
+    console.log("Error Saving Data", error)
+  }
 
-      const Submitedddd =
-        'Successfully submitted';
-      Alert.alert('Success', Submitedddd, [
-        {
-          text: 'OK',
-          onPress: () => {
-        navigation.navigate('Breakdown', editData
-  ? { editedCard: newCard, editIndex }
-  : { submittedCards: [newCard] }
-);
-          },
-        },
-      ]);
+
+//       const Submitedddd =
+//         'Successfully submitted';
+//       Alert.alert('Success', Submitedddd, [
+//         {
+//           text: 'OK',
+//           onPress: () => {
+//         navigation.navigate('Breakdown', editData
+//   ? { editedCard: newCard, editIndex }
+//   : { submittedCards: [newCard] }
+// );
+//           },
+//         },
+//       ]);
       setselectNatureofComplaint('');
       setswitches('');
       setselectPriority('');
@@ -70,7 +97,7 @@ useEffect(() => {
       setenterDescription('');
       setenterClientWorkerNo('');
 
-      // setSubmittedCards(prev => [newCard, ...prev]);
+// setSubmittedCards(prev => [newCard, ...prev]);
     }
   };
   return (
