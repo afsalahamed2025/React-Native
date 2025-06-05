@@ -5,9 +5,13 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
+
+  
 } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import { Image } from 'react-native';
+// import progressImage from'../assets/image'
 
 
 export default function Home({navigation}) {
@@ -24,40 +28,47 @@ export default function Home({navigation}) {
       </View>
 
       <View style={styles.statusContainer}>
-   <StatusBox label="Open" count="0" color="red" />
+   <StatusBox label="Open" count="64" color="#ff0000" />
   <View style={{ width: 1, height: 70, backgroundColor: 'black', fontSize:"16", fontWeight:"900", justifyContent:"center",  alignSelf:"center",}} />
   <StatusBox label="Close" count="0" color="green" />
   <View style={{ width: 1, height: 70, backgroundColor: 'black', fontSize:"16", fontWeight:"900" , justifyContent:"center",  alignSelf:"center", }} />
-  <StatusBox label="StandBy" count="0" color="orange" />
+  <StatusBox label="StandBy" count="181" color="#ffbf00" />
      </View>
 
       <View style={styles.progressBox}>
         <Text style={styles.date}>Today May 26 2025</Text>
         <Text style={styles.progressText}>Your Work Progress</Text>
         <Text style={styles.percentage}>16% work complte</Text>
-      </View>
 
+      {/* <Image source={progressImage} /> */}
+
+      </View>
+    {/* <View style={{ width:'%', justifyContent:'space-between',flexDirection:'row'}}> */}
       <Text style={styles.sectionTitle}>Modules</Text>
+      {/* <Text style={styles.sectionTitle}>View More</Text> */}
+      {/* </View> */}
+
       <View style={styles.moduleContainer}>
         <ModuleBox 
           navigation={navigation}
-          label="Breakdown Maintenance"
-          count="0" 
-          icon="tools"  
+          label="Workorder"
+          count="0/245" 
+         image={require('../assets/image/paper-bag.png')}  
         />
-        <ModuleBox label="Preventive Maintenance" count="0" icon="cogs" />
+        <ModuleBox label="Facility Auding Maintenance" count="0/0" image={require('../assets/image/research.png')} />
         <ModuleBox
-          label="Facility Auditing Main"
-          count="0"
-          icon="clipboard-check"
+          label="House Keeping Maintenance"
+          count="0/28"
+         image={require('../assets/image/housekeeping.png')}
         />
-        <ModuleBox label="Service Based Maintenance " count="0" icon="cog" />
+        <ModuleBox label="Service Based Maintenance " count="0/8"  image={require('../assets/image/settings.png')} />
       </View>
 
       <Text style={styles.sectionTitle}>Tools</Text>
       <View style={styles.moduleContainer}>
-        <ToolBox label="Scan To Get Asst Details" icon="qrcode" />
-        <ToolBox label="My Activity Side" icon="chart-line" />
+        <ToolBox label="Scan To Get Asst Details" image={require('../assets/image/qr.png')} />
+        <ToolBox label="My Activity Side" image={require('../assets/image/statistics.png')} />
+        <ToolBox label="My Activity Side" image={require('../assets/image/statistics.png')} />
       </View>
     </ScrollView>
   );
@@ -71,9 +82,9 @@ const StatusBox = ({label, count, color}) => (
 );
 
 // MODULES //
-const ModuleBox = ({label, count, icon, navigation}) => (
+const ModuleBox = ({label, count, navigation,image}) => (
   <TouchableOpacity 
-     onPress={()=>{label=="Breakdown Maintenance" ? (console.log('yes this break screen'), navigation.navigate('Break')):console.log("no this screen");
+     onPress={()=>{label=="Workorder" ? (console.log('yes this break screen'), navigation.navigate('Break')):console.log("no this screen");
      }}
     style={[
       styles.moduleBox,
@@ -86,6 +97,7 @@ const ModuleBox = ({label, count, icon, navigation}) => (
         width: '100%',
         alignItems: 'center',
         justifyContent: 'center',
+        alignSelf:'center',
       }}>
       <Text
         style={{
@@ -110,16 +122,17 @@ const ModuleBox = ({label, count, icon, navigation}) => (
           height: 50,
           width: '50%',
           justifyContent: 'center',
+          alignItems:'center',
           alignSelf: 'center',
         }}>
         <Text
           style={{
             textAlign: 'center',
             fontSize: 17,
-            fontWeight: '600',
+            fontWeight: '400',
             color: '3cdf39',
           }}>
-          ({count})
+          {count}
         </Text>
       </View>
       <View
@@ -129,20 +142,18 @@ const ModuleBox = ({label, count, icon, navigation}) => (
           justifyContent: 'center',
           alignSelf: 'center',
         }}>
-        <FontAwesome5
-          style={{
-            textAlign: 'center',
-          }}
-          name={icon}
-          size={28}
-          color="#3cdf39"
-        />
+          {image && (
+          <Image
+            source={image}
+            style={{ width: 30, height: 30, resizeMode: 'contain' }}
+          />
+        )}
       </View>
     </View>
   </TouchableOpacity>
 );
 
-const ToolBox = ({ label, icon }) => (
+const ToolBox = ({ label,image }) => (
   <View
     style={[
       styles.moduleBox,
@@ -166,7 +177,12 @@ const ToolBox = ({ label, icon }) => (
         flexDirection: 'row',
         alignItems: 'center',
       }}>
-      <FontAwesome5 name={icon} color="#3cdf39" size={24} />
+         {image && (
+          <Image
+            source={image}
+            style={{ width: 30, height: 30, resizeMode: 'contain' }}
+          />
+        )}
     </View>
 
    
@@ -191,11 +207,11 @@ const ToolBox = ({ label, icon }) => (
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    width:'100%',
     backgroundColor: '#f8f8f8',
   },
   header: {
-    backgroundColor: '#3cdf39',
+    backgroundColor: '#0073ff',
     padding: 25,
     width:"100%",
     height: 100,
@@ -230,10 +246,16 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   progressBox: {
-    backgroundColor: '#3cdf39',
-    margin: 10,
-    padding: 10,
-    borderRadius: 10,
+    backgroundColor: '#0073ff',
+   
+    width:'95%',
+    
+    justifyContent:'center',
+    alignSelf:'center',
+    
+    padding: 7,
+    borderRadius: 20,
+    height:100,
   },
   date: {
     color: '#fff',
@@ -251,7 +273,12 @@ const styles = StyleSheet.create({
   },
 
   sectionTitle: {
-    margin: 10,
+    width:'94%',
+    // padding:5,
+    alignItems:'center',
+    justifyContent:'center',
+    alignSelf:'center',
+    // margin: 10,
     fontWeight: 'bold',
     fontSize: 16,
   },
@@ -259,7 +286,7 @@ const styles = StyleSheet.create({
   moduleContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     paddingHorizontal: 10,
   },
 

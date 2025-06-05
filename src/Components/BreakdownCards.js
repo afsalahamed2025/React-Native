@@ -34,6 +34,7 @@ const BreakdownCards = ({route}) => {
       console.log('AsyncStorage-stored data:', stored);
       /*=====########======= Json la ironthu string object change  =====#######======*/
       const parsed = stored ? JSON.parse(stored) : [];
+    
       // setcards(parsed);
       // SetfilteredCards(parsed);
       console.log('Parsed cards:', parsed);
@@ -71,14 +72,24 @@ const BreakdownCards = ({route}) => {
     /* User oru search text type panrathaa filter */
       const filtered = cards.filter(card => {
         const Searcheing = `
-        ${card.selectNatureofComplaint}
-        ${card.enterDescription}
-        ${card.enterClientWorkerNo}
-        ${card.selectPriority}
-        ${card.smartSwitch}
-        ${card.switches}
+        ${card.ContractName }
+        ${card.AssignedTo }
+        ${card.Priority }
+        ${card.BuildingName }
+        ${card.SpotName }
+        ${card.LocationName }
+        ${card.SpotName }
+        ${card.Division }
+        ${card.AttendBy }
+        ${card.WorkorderType }
+        ${card. PreferredTimeTo}
+        ${card.PreferredTimeForm }
+        ${card.StandbyRemarks}
+        ${card.StandbyDateTime}
+
+
       `.toLowerCase();
-        /* Searcheing-la searchText irukka nu check panrathu */
+        /* Searcheingla searchText irukka nu check panrathu */
         return Searcheing.includes(searchText.toLowerCase());
       });
       /* display aagum  only search match aana cards mattum. */
@@ -90,12 +101,16 @@ const BreakdownCards = ({route}) => {
   const handleDelete = async index => {
     const updated = [...cards];
     updated.splice(index, 1);
+
     setcards(updated);
+    SetfilteredCards(updated)
     await AsyncStorage.setItem('cards', JSON.stringify(updated));
   };
 
   return (
     <>
+
+    {/* Complaint Deatils */}
       <View
         style={{
           width: '100%',
@@ -123,6 +138,7 @@ const BreakdownCards = ({route}) => {
           </Text>
         </View>
       </View>
+      {/* Searchbar */}
       <View
         style={{
           width: '95%',
@@ -160,24 +176,11 @@ const BreakdownCards = ({route}) => {
           value={searchText}
           onChangeText={text => {
             setSearchText(text);
-            //           if (text.trim()===''){
-            //             SetfilteredCards(cards)
-            //           } else {
-            //      const filtered = cards.filter(card => {
-            //     const combinedText = `
-            //       ${card.selectNatureofComplaint}
-            //       ${card.enterDescription}
-            //       ${card.enterClientWorkerNo}
-            //       ${card.selectPriority}
-            //       ${card.smartSwitch}
-            //       ${card.switches}
-            //     `.toLowerCase();
-
-            //     return combinedText.includes(text.toLowerCase());
-            //   });
-            //  SetfilteredCards(filtered);
-            // }
-          }}
+            // handleSearch()
+                      if (text.trim()===''){
+                        SetfilteredCards(cards)
+                      } 
+                    }}
         />
         <TouchableOpacity
           onPress={handleSearch}
@@ -191,6 +194,7 @@ const BreakdownCards = ({route}) => {
           <Ionicons name="send-sharp" color="#0073ff" size={30} />
         </TouchableOpacity>
       </View>
+      {/* Cards */}
       <ScrollView>
         {filteredCards.map((item, index) => (
           <View
@@ -199,7 +203,21 @@ const BreakdownCards = ({route}) => {
               justifyContent: 'center',
               alignSelf: 'center',
             }}>
+           
             <View
+              // key={item.id}
+              style={{
+                borderWidth: 1,
+                width: '100%',
+                backgroundColor: '#ffffff',
+                alignItems: 'center',
+                padding: 10,
+                marginTop:13,
+                justifyContent: 'center',
+                alignSelf: 'center',
+                borderRadius: 10,
+              }}>
+                 <View
               style={{
                 width: '100%',
                 height: 50,
@@ -208,26 +226,7 @@ const BreakdownCards = ({route}) => {
                 justifyContent: 'flex-end',
                 alignItems: 'center',
               }}>
-              {/* <Text style={{color:'black',fontSize:17,fontWeight:'700',}}>101</Text> */}
-              {/* <View
-                style={{
-                  width: '50%',
-                  height: 30,
-
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}>
-                <Text
-                  style={{
-                    textDecorationLine: 'underline',
-                    color: '#0073ff',
-                    fontSize: 20,
-                    fontWeight: '600',
-                  }}>
-                  Complaint Details
-                </Text>
-              </View> */}
-              <TouchableOpacity
+               <TouchableOpacity
                 onPress={() => handleDelete(index)}
                 style={{
                   width: '25%',
@@ -263,18 +262,6 @@ const BreakdownCards = ({route}) => {
                 </Text>
               </TouchableOpacity>
             </View>
-            <View
-              key={item.id}
-              style={{
-                borderWidth: 1,
-                width: '100%',
-                backgroundColor: '#ffffff',
-                alignItems: 'center',
-                padding: 10,
-                justifyContent: 'center',
-                alignSelf: 'center',
-                borderRadius: 10,
-              }}>
               <View
                 style={{
                   width: '100%',
@@ -308,7 +295,7 @@ const BreakdownCards = ({route}) => {
                     alignSelf: 'center',
                   }}>
                   <Text
-                    style={{fontSize: 17, fontWeight: '600', color: '#000000'}}>
+                    style={{fontSize: 15, fontWeight: '700', color: '#000000'}}>
                     Contract Name
                   </Text>
                 </View>
@@ -320,8 +307,8 @@ const BreakdownCards = ({route}) => {
                     alignSelf: 'center',
                   }}>
                   <Text
-                    style={{fontSize: 17, fontWeight: '500', color: '#595a5b'}}>
-                    : {item.selectNatureofComplaint}
+                    style={{fontSize:  15, fontWeight: '700', color: '#595a5b'}}>
+                    : {item.ContractName}
                   </Text>
                 </View>
               </View>
@@ -353,7 +340,7 @@ const BreakdownCards = ({route}) => {
                     alignSelf: 'center',
                   }}>
                   <Text
-                    style={{fontSize: 17, fontWeight: '600', color: '#000000'}}>
+                    style={{fontSize: 15, fontWeight: '700', color: '#000000'}}>
                     Location Name
                   </Text>
                 </View>
@@ -365,8 +352,8 @@ const BreakdownCards = ({route}) => {
                     alignSelf: 'center',
                   }}>
                   <Text
-                    style={{fontSize: 17, fontWeight: '500', color: '#595a5b'}}>
-                    : {item.switches}
+                    style={{fontSize:  15, fontWeight: '700', color: '#595a5b'}}>
+                    : {item.LocationName}
                   </Text>
                 </View>
               </View>
@@ -398,7 +385,7 @@ const BreakdownCards = ({route}) => {
                     alignSelf: 'center',
                   }}>
                   <Text
-                    style={{fontSize: 17, fontWeight: '600', color: '#000000'}}>
+                    style={{fontSize: 15, fontWeight: '700', color: '#000000'}}>
                     Building Name
                   </Text>
                 </View>
@@ -410,8 +397,8 @@ const BreakdownCards = ({route}) => {
                     alignSelf: 'center',
                   }}>
                   <Text
-                    style={{fontSize: 17, fontWeight: '500', color: '#595a5b'}}>
-                    : {item.selectPriority}
+                    style={{fontSize:  15, fontWeight: '700', color: '#595a5b'}}>
+                    : {item.BuildingName}
                   </Text>
                 </View>
               </View>
@@ -447,7 +434,7 @@ const BreakdownCards = ({route}) => {
                     alignSelf: 'center',
                   }}>
                   <Text
-                    style={{fontSize: 17, fontWeight: '600', color: '#000000'}}>
+                    style={{fontSize: 15, fontWeight: '700', color: '#000000'}}>
                     Spot Name
                   </Text>
                 </View>
@@ -459,8 +446,8 @@ const BreakdownCards = ({route}) => {
                     alignSelf: 'center',
                   }}>
                   <Text
-                    style={{fontSize: 17, fontWeight: '500', color: '#595a5b'}}>
-                    : {item.smartSwitch}
+                    style={{fontSize:  15, fontWeight: '700', color: '#595a5b'}}>
+                    : {item.SpotName}
                   </Text>
                 </View>
               </View>
@@ -492,7 +479,7 @@ const BreakdownCards = ({route}) => {
                     alignSelf: 'center',
                   }}>
                   <Text
-                    style={{fontSize: 17, fontWeight: '600', color: '#000000'}}>
+                    style={{fontSize: 15, fontWeight: '700', color: '#000000'}}>
                     Assigned to
                   </Text>
                 </View>
@@ -504,8 +491,8 @@ const BreakdownCards = ({route}) => {
                     alignSelf: 'center',
                   }}>
                   <Text
-                    style={{fontSize: 17, fontWeight: '500', color: '#595a5b'}}>
-                    : {item.enterDescription}
+                    style={{fontSize:  15, fontWeight: '700', color: '#595a5b'}}>
+                    : {item.AssignedTo}
                   </Text>
                 </View>
               </View>
@@ -539,7 +526,7 @@ const BreakdownCards = ({route}) => {
                     alignSelf: 'center',
                   }}>
                   <Text
-                    style={{fontSize: 17, fontWeight: '700', color: '#000000'}}>
+                    style={{fontSize:  15, fontWeight: '700', color: '#000000'}}>
                     Priority
                   </Text>
                 </View>
@@ -551,8 +538,391 @@ const BreakdownCards = ({route}) => {
                     alignSelf: 'center',
                   }}>
                   <Text
-                    style={{fontSize: 17, fontWeight: '500', color: '#595a5b'}}>
-                    : {item.enterClientWorkerNo}
+                    style={{fontSize: 15, fontWeight: '700', color: '#595a5b'}}>
+                    : {item.Priority}
+                  </Text>
+                </View>
+              </View>
+              <View style={{height: 10}} />
+
+              <View
+                style={{
+                  width: '100%',
+                  height: 20,
+                  flexDirection: 'row',
+                  justifyContent: 'space-around',
+                  alignSelf: 'center',
+                }}>
+                <View
+                  style={{
+                    width: '10%',
+                    height: 28,
+                    justifyContent: 'center',
+                    alignSelf: 'center',
+                  }}>
+                  <Icon3
+                    name="format-list-numbered"
+                    size={30}
+                    color="#0073ff"
+                  />
+                </View>
+                <View
+                  style={{
+                    width: '41%',
+                    height: 20,
+                    justifyContent: 'center',
+                    alignSelf: 'center',
+                  }}>
+                  <Text
+                    style={{fontSize:  15, fontWeight: '700', color: '#000000'}}>
+                    SpotCode
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    width: '41%',
+                    height: 20,
+                    justifyContent: 'center',
+                    alignSelf: 'center',
+                  }}>
+                  <Text
+                    style={{fontSize:  15, fontWeight: '700', color: '#595a5b'}}>
+                    : {item.SpotCode}
+                  </Text>
+                </View>
+              </View>
+              <View style={{height: 10}} />
+
+              <View
+                style={{
+                  width: '100%',
+                  height: 20,
+                  flexDirection: 'row',
+                  justifyContent: 'space-around',
+                  alignSelf: 'center',
+                }}>
+                <View
+                  style={{
+                    width: '10%',
+                    height: 28,
+                    justifyContent: 'center',
+                    alignSelf: 'center',
+                  }}>
+                  <Icon3
+                    name="format-list-numbered"
+                    size={30}
+                    color="#0073ff"
+                  />
+                </View>
+                <View
+                  style={{
+                    width: '41%',
+                    height: 20,
+                    justifyContent: 'center',
+                    alignSelf: 'center',
+                  }}>
+                  <Text
+                    style={{fontSize:  15, fontWeight: '700', color: '#000000'}}>
+                    Division
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    width: '41%',
+                    height: 20,
+                    justifyContent: 'center',
+                    alignSelf: 'center',
+                  }}>
+                  <Text
+                    style={{fontSize:  15, fontWeight: '700', color: '#595a5b'}}>
+                    : {item.Division}
+                  </Text>
+                </View>
+              </View>
+              <View style={{height: 10}} />
+
+              <View
+                style={{
+                  width: '100%',
+                  height: 20,
+                  flexDirection: 'row',
+                  justifyContent: 'space-around',
+                  alignSelf: 'center',
+                }}>
+                <View
+                  style={{
+                    width: '10%',
+                    height: 28,
+                    justifyContent: 'center',
+                    alignSelf: 'center',
+                  }}>
+                  <Icon3
+                    name="format-list-numbered"
+                    size={30}
+                    color="#0073ff"
+                  />
+                </View>
+                <View
+                  style={{
+                    width: '41%',
+                    height: 20,
+                    justifyContent: 'center',
+                    alignSelf: 'center',
+                  }}>
+                  <Text
+                    style={{fontSize:  15, fontWeight: '700', color: '#000000'}}>
+                    AttendBy
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    width: '41%',
+                    height: 20,
+                    justifyContent: 'center',
+                    alignSelf: 'center',
+                  }}>
+                  <Text
+                    style={{fontSize:  15, fontWeight: '700', color: '#595a5b'}}>
+                    : {item.AttendBy}
+                  </Text>
+                </View>
+              </View>
+              <View style={{height: 10}} />
+
+              <View
+                style={{
+                  width: '100%',
+                  height: 20,
+                  flexDirection: 'row',
+                  justifyContent: 'space-around',
+                  alignSelf: 'center',
+                }}>
+                <View
+                  style={{
+                    width: '10%',
+                    height: 28,
+                    justifyContent: 'center',
+                    alignSelf: 'center',
+                  }}>
+                  <Icon3
+                    name="format-list-numbered"
+                    size={30}
+                    color="#0073ff"
+                  />
+                </View>
+                <View
+                  style={{
+                    width: '41%',
+                    height: 20,
+                    justifyContent: 'center',
+                    alignSelf: 'center',
+                  }}>
+                  <Text
+                    style={{fontSize:  15, fontWeight: '700', color: '#000000'}}>
+                    WorkorderType
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    width: '41%',
+                    height: 20,
+                    justifyContent: 'center',
+                    alignSelf: 'center',
+                  }}>
+                  <Text
+                    style={{fontSize:  15, fontWeight: '700', color: '#595a5b'}}>
+                    : {item.WorkorderType}
+                  </Text>
+                </View>
+              </View>
+              <View style={{height: 10}} />
+
+              <View
+                style={{
+                  width: '100%',
+                  height: 20,
+                  flexDirection: 'row',
+                  justifyContent: 'space-around',
+                  alignSelf: 'center',
+                }}>
+                <View
+                  style={{
+                    width: '10%',
+                    height: 28,
+                    justifyContent: 'center',
+                    alignSelf: 'center',
+                  }}>
+                  <Icon3
+                    name="format-list-numbered"
+                    size={30}
+                    color="#0073ff"
+                  />
+                </View>
+                <View
+                  style={{
+                    width: '41%',
+                    height: 20,
+                    justifyContent: 'center',
+                    alignSelf: 'center',
+                  }}>
+                  <Text
+                    style={{fontSize:  15, fontWeight: '700', color: '#000000'}}>
+                    PreferredTimeTo
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    width: '41%',
+                    height: 20,
+                    justifyContent: 'center',
+                    alignSelf: 'center',
+                  }}>
+                  <Text
+                    style={{fontSize:  15, fontWeight: '700', color: '#595a5b'}}>
+                    : {item.PreferredTimeTo}
+                  </Text>
+                </View>
+              </View>
+              <View style={{height: 10}} />
+
+              <View
+                style={{
+                  width: '100%',
+                  height: 20,
+                  flexDirection: 'row',
+                  justifyContent: 'space-around',
+                  alignSelf: 'center',
+                }}>
+                <View
+                  style={{
+                    width: '10%',
+                    height: 28,
+                    justifyContent: 'center',
+                    alignSelf: 'center',
+                  }}>
+                  <Icon3
+                    name="format-list-numbered"
+                    size={30}
+                    color="#0073ff"
+                  />
+                </View>
+                <View
+                  style={{
+                    width: '41%',
+                    height: 20,
+                    justifyContent: 'center',
+                    alignSelf: 'center',
+                  }}>
+                  <Text
+                    style={{fontSize:  15, fontWeight: '700', color: '#000000'}}>
+                    PreferredTimeForm
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    width: '41%',
+                    height: 20,
+                    justifyContent: 'center',
+                    alignSelf: 'center',
+                  }}>
+                  <Text
+                    style={{fontSize:  15, fontWeight: '700', color: '#595a5b'}}>
+                    : {item.PreferredTimeForm}
+                  </Text>
+                </View>
+              </View>
+              <View style={{height: 10}} />
+
+              <View
+                style={{
+                  width: '100%',
+                  height: 20,
+                  flexDirection: 'row',
+                  justifyContent: 'space-around',
+                  alignSelf: 'center',
+                }}>
+                <View
+                  style={{
+                    width: '10%',
+                    height: 28,
+                    justifyContent: 'center',
+                    alignSelf: 'center',
+                  }}>
+                  <Icon3
+                    name="format-list-numbered"
+                    size={30}
+                    color="#0073ff"
+                  />
+                </View>
+                <View
+                  style={{
+                    width: '41%',
+                    height: 20,
+                    justifyContent: 'center',
+                    alignSelf: 'center',
+                  }}>
+                  <Text
+                    style={{fontSize:  15, fontWeight: '700', color: '#000000'}}>
+                    StandbyRemarks
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    width: '41%',
+                    height: 20,
+                    justifyContent: 'center',
+                    alignSelf: 'center',
+                  }}>
+                  <Text
+                    style={{fontSize:  15, fontWeight: '700', color: '#595a5b'}}>
+                    : {item.StandbyRemarks}
+                  </Text>
+                </View>
+              </View>
+              <View style={{height: 10}} />
+              <View
+                style={{
+                  width: '100%',
+                  height: 20,
+                  flexDirection: 'row',
+                  justifyContent: 'space-around',
+                  alignSelf: 'center',
+                }}>
+                <View
+                  style={{
+                    width: '10%',
+                    height: 28,
+                    justifyContent: 'center',
+                    alignSelf: 'center',
+                  }}>
+                  <Icon3
+                    name="format-list-numbered"
+                    size={30}
+                    color="#0073ff"
+                  />
+                </View>
+                <View
+                  style={{
+                    width: '41%',
+                    height: 20,
+                    justifyContent: 'center',
+                    alignSelf: 'center',
+                  }}>
+                  <Text
+                    style={{fontSize:  15, fontWeight: '700', color: '#000000'}}>
+                    StandbyDateTime
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    width: '41%',
+                    height: 20,
+                    justifyContent: 'center',
+                    alignSelf: 'center',
+                  }}>
+                  <Text
+                    style={{fontSize:  15, fontWeight: '700', color: '#595a5b'}}>
+                    : {item.StandbyDateTime}
                   </Text>
                 </View>
               </View>

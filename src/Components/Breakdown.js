@@ -1,103 +1,164 @@
 import {StyleSheet, Text, View, Button, Alert} from 'react-native';
 import React, {useState, useEffect} from 'react';
-import {TextInput} from 'react-native-gesture-handler';
-import  AsyncStorage  from '@react-native-async-storage/async-storage'
+import {ScrollView, TextInput} from 'react-native-gesture-handler';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
 
 const Break = ({route}) => {
   // const [submittedCards, setSubmittedCards] = useState([]);
-const { editData, editIndex } = route.params || {};
-const navigation = useNavigation();
+  const {editData, editIndex} = route.params || {};
+  const navigation = useNavigation();
 
-const [selectNatureofComplaint, setselectNatureofComplaint] = useState('');
-const [switches, setswitches] = useState('');
-const [selectPriority, setselectPriority] = useState('');
-const [smartSwitch, setsmartSwitch] = useState('');
-const [enterDescription, setenterDescription] = useState('');
-const [enterClientWorkerNo, setenterClientWorkerNo] = useState('');
+  const [ContractName, setContractName] = useState('');
+  const [LocationName, setLocationName] = useState('');
+  const [BuildingName, setBuildingName] = useState('');
+  const [SpotName, setSpotName] = useState('');
+  const [AssignedTo, setAssignedTo] = useState('');
+  const [Priority, setPriority] = useState('');
 
-useEffect(() => {
-  if (editData) {
+  const [SpotCode, setSpotCode] = useState('');
+  const [Division, setDivision] = useState('');
+  const [AttendBy, setAttendBy] = useState('');
+  const [WorkorderType, setWorkorderType] = useState('');
+  const [PreferredTimeTo, setPreferredTimeTo] = useState('');
+  const [PreferredTimeForm, setPreferredTimeForm] = useState('');
+  const [StandbyRemarks, setStandbyRemarks] = useState('');
+  const [StandbyDateTime, setStandbyDateTime] = useState('');
 
-
-    setselectNatureofComplaint(editData.selectNatureofComplaint || '');
-    setswitches(editData.switches || '');
-    setselectPriority(editData.selectPriority || '');
-    setsmartSwitch(editData.smartSwitch || '');
-    setenterDescription(editData.enterDescription || '');
-    setenterClientWorkerNo(editData.enterClientWorkerNo || '');
-  }
-}, [editData]);
+  useEffect(() => {
+    if (editData) {
+      setContractName(editData.ContractName || '');
+      setLocationName(editData.LocationName || '');
+      setBuildingName(editData.BuildingName || '');
+      setSpotName(editData.SpotName || '');
+      setAssignedTo(editData.AssignedTo || '');
+      setPriority(editData.Priority || '');
+      setSpotCode(editData.SpotCode || '');
+      setDivision(editData.Division || '');
+      setAttendBy(editData.AttendBy || '');
+      setWorkorderType(editData.WorkorderType || '');
+      setPreferredTimeTo(editData.PreferredTimeTo || '');
+      setPreferredTimeForm(editData.PreferredTimeForm || '');
+      setStandbyRemarks(editData.StandbyRemarks || '');
+      setStandbyDateTime(editData.StandbyDateTime || '');
+      setPriority(editData.Priority || '');
+      setPriority(editData.Priority || '');
+      
+    }
+  }, [editData]);
 
   const handlePress = async () => {
-    if (selectNatureofComplaint === '') {
+    if (ContractName === '') {
       Alert.alert('Error', 'Please fill in all the fields ');
-    } else if (switches == '') {
-      Alert.alert('Error', 'Switches');
-    } else if (selectPriority === '') {
-      Alert.alert('Error', 'Select Priority');
-    } else if (smartSwitch == '') {
-      Alert.alert('Error', 'Enter Description');
-    } else if (enterDescription === '') {
-      Alert.alert('Error', 'Enter Client Worker No');
-    } else if (enterClientWorkerNo == '') {
-      Alert.alert('Error', 'Enter Client Worker No');
-    } else {
+    } else if (LocationName == '') {
+      Alert.alert('Error', 'Please enter LocationName');
+    } else if (BuildingName === '') {
+      Alert.alert('Error', 'Please enter BuildingName');
+    } else if (SpotName == '') {
+      Alert.alert('Error', 'Please enter SpotName');
+    } else if (AssignedTo === '') {
+      Alert.alert('Error', 'Please enter AssignedTo');
+    } else if (Priority == '') {
+      Alert.alert('Error', 'Please enter Priority');
+    }
+    else if (SpotCode == '') {
+      Alert.alert('Error', 'Please enter SpotCode');
+    }
+    else if (Division == '') {
+      Alert.alert('Error', 'Please enter Division');
+    }
+    else if (AttendBy == '') {
+      Alert.alert('Error', 'Please enter AttendBy');
+    }
+    else if (WorkorderType == '') {
+      Alert.alert('Error', 'Please enter WorkorderType');
+    }
+    else if (PreferredTimeTo == '') {
+      Alert.alert('Error', 'Please enter PreferredTimeTo');
+    }
+    else if (PreferredTimeForm == '') {
+      Alert.alert('Error', 'Please enter PreferredTimeForm');
+    }
+    else if (StandbyRemarks == '') {
+      Alert.alert('Error', 'Please enter StandbyRemarks');
+    }
+    else if (StandbyDateTime == '') {
+      Alert.alert('Error', ' Please enter StandbyDateTime');
+    }
+
+    else {
       const newCard = {
-        selectNatureofComplaint,
-          id:Date.now().toString(),  
-        switches,
-        selectPriority,
-        smartSwitch,
-        enterDescription,
-        enterClientWorkerNo,
+        ContractName,
+        id: Date.now().toString(),
+        LocationName,
+        BuildingName,
+        SpotName,
+        AssignedTo,
+        Priority,
+        SpotCode,
+        Division,
+        AttendBy,
+        WorkorderType,
+        PreferredTimeTo,
+        PreferredTimeForm,
+        StandbyRemarks,
+        StandbyDateTime,
+
       };
-/*============ cards stored data from asyncstorage  key ==========  */
-      try{
+      /*============ cards stored data from asyncstorage  key ==========  */
+      try {
         const stored = await AsyncStorage.getItem('cards');
-/*=========inthule value json format la   irokku atha normal array va convert pannathu illana empty arrat va initial =======  */
-        let cards = stored ? JSON.parse(stored) :[]
-/*============ If editing replace the old card at editIndex with newCard. ==========  */
-        if(editData && editIndex !== undefined){
-          cards[editIndex]=newCard
-        } 
-/*============ edit illana  new data va initialze add pannthu push adding ==========  */
-        else{
-          cards.push (newCard)
+        /*=========inthule value json format la   irokku atha normal array va convert pannathu illana empty arrat va initial =======  */
+        let cards = stored ? JSON.parse(stored) : [];
+        /*============ If editing replace the old card at editIndex with newCard. ==========  */
+        if (editData && editIndex !== undefined) {
+          cards[editIndex] = newCard;
+        } else {
+        /*============ edit illana  new data va initialze add pannthu push adding ==========  */
+          cards.push(newCard);
         }
-    await AsyncStorage.setItem('cards',JSON.stringify(cards))
-    Alert.alert('Success','Successfully submitted',[
-      {
-        text:'OK',
-        onPress:()=>navigation.navigate("Breakdown")
+        await AsyncStorage.setItem('cards', JSON.stringify(cards));
+        Alert.alert('Success', 'Successfully submitted', [
+          {
+            text: 'OK',
+            onPress: () => navigation.navigate('Breakdown'),
+          },
+        ]);
+      } catch (error) {
+        console.log('Error Saving Data', error);
       }
-    ])     
-  } catch(error){
-    console.log("Error Saving Data", error)
-  }
 
+      //       const Submitedddd =
+      //         'Successfully submitted';
+      //       Alert.alert('Success', Submitedddd, [
+      //         {
+      //           text: 'OK',
+      //           onPress: () => {
+      //         navigation.navigate('Breakdown', editData
+      //   ? { editedCard: newCard, editIndex }
+      //   : { submittedCards: [newCard] }
+      // );
+      //           },
+      //         },
+      //       ]);
+      setContractName('');
+      setLocationName('');
+      setBuildingName('');
+      setSpotName('');
+      setAssignedTo('');
+      setPriority('');
+      setSpotCode('');
+      setDivision('');
+      setAttendBy('');
+      setWorkorderType('');
+      setPreferredTimeTo('');
+      setPreferredTimeForm('');
+      setStandbyRemarks('');
+      setStandbyDateTime('');
 
-//       const Submitedddd =
-//         'Successfully submitted';
-//       Alert.alert('Success', Submitedddd, [
-//         {
-//           text: 'OK',
-//           onPress: () => {
-//         navigation.navigate('Breakdown', editData
-//   ? { editedCard: newCard, editIndex }
-//   : { submittedCards: [newCard] }
-// );
-//           },
-//         },
-//       ]);
-      setselectNatureofComplaint('');
-      setswitches('');
-      setselectPriority('');
-      setsmartSwitch('');
-      setenterDescription('');
-      setenterClientWorkerNo('');
+      
 
-// setSubmittedCards(prev => [newCard, ...prev]);
+      // setSubmittedCards(prev => [newCard, ...prev]);
     }
   };
   return (
@@ -105,6 +166,7 @@ useEffect(() => {
       style={{
         backgroundColor: 'white',
         width: '100%',
+      
         justifyContent: 'center',
         alignSelf: 'center',
         // flex: 1,
@@ -121,85 +183,185 @@ useEffect(() => {
         }}>
         Complaint Details
       </Text>
-
+<ScrollView>
       <View
         style={{
           flexDirection: 'column',
           width: '94%',
+         
           justifyContent: 'center',
           alignSelf: 'center',
           // flexShrink: 0,
         }}>
         <TextInput
-          onChangeText={text => setselectNatureofComplaint(text)}
-          value={selectNatureofComplaint}
+          onChangeText={text => setContractName(text)}
+          value={ContractName}
           style={{
             borderWidth: 1,
             borderColor: '#0073ff',
             borderRadius: 10,
             color: '#0073ff',
           }}
-          placeholder="Select Nature of Complaint"
+          placeholder="ContractName"
           placeholderTextColor="#000000"></TextInput>
         <View style={{height: 20}} />
         <TextInput
-          onChangeText={text => setswitches(text)}
-          value={switches}
+          onChangeText={text => setLocationName(text)}
+          value={LocationName}
           style={{
             borderWidth: 1,
             borderColor: '#0073ff',
             borderRadius: 10,
             color: '#0073ff',
           }}
-          placeholder="Switches"
+          placeholder="LocationName"
           placeholderTextColor="#000000"></TextInput>
         <View style={{height: 20}} />
         <TextInput
-          onChangeText={text => setselectPriority(text)}
-          value={selectPriority}
+          onChangeText={text => setBuildingName(text)}
+          value={BuildingName}
           style={{
             borderWidth: 1,
             borderColor: '#0073ff',
             borderRadius: 10,
             color: '#0073ff',
           }}
-          placeholder="Select Priority"
+          placeholder="BuildingName"
           placeholderTextColor="#000000"></TextInput>
         <View style={{height: 20}} />
         <TextInput
-          onChangeText={text => setsmartSwitch(text)}
-          value={smartSwitch}
+          onChangeText={text => setSpotName(text)}
+          value={SpotName}
           style={{
             borderWidth: 1,
             borderColor: '#0073ff',
             borderRadius: 10,
             color: '#0073ff',
           }}
-          placeholder="Smart Switch"
+          placeholder="SpotName"
           placeholderTextColor="#000000"></TextInput>
         <View style={{height: 20}} />
         <TextInput
-          onChangeText={text => setenterDescription(text)}
-          value={enterDescription}
+          onChangeText={text => setAssignedTo(text)}
+          value={AssignedTo}
           style={{
             borderWidth: 1,
             borderColor: '#0073ff',
             borderRadius: 10,
             color: '#0073ff',
           }}
-          placeholder="Enter Description"
+          placeholder="AssignedTo"
           placeholderTextColor="#000000"></TextInput>
         <View style={{height: 20}} />
+
+        {/*  */}
         <TextInput
-          onChangeText={text => setenterClientWorkerNo(text)}
-          value={enterClientWorkerNo}
+          onChangeText={text => setPriority(text)}
+          value={Priority}
           style={{
             borderWidth: 1,
             borderColor: '#0073ff',
             borderRadius: 10,
             color: '#0073ff',
           }}
-          placeholder="Enter Client Worker No"
+          placeholder="Priority"
+          placeholderTextColor="#000000"></TextInput>
+        <View style={{height: 20}} />
+          
+          <TextInput
+          onChangeText={text => setSpotCode(text)}
+          value={SpotCode}
+          style={{
+            borderWidth: 1,
+            borderColor: '#0073ff',
+            borderRadius: 10,
+            color: '#0073ff',
+          }}
+          placeholder="SpotCode"
+          placeholderTextColor="#000000"></TextInput>
+        <View style={{height: 20}} />
+            <TextInput
+          onChangeText={text => setDivision(text)}
+          value={Division}
+          style={{
+            borderWidth: 1,
+            borderColor: '#0073ff',
+            borderRadius: 10,
+            color: '#0073ff',
+          }}
+          placeholder="Division"
+          placeholderTextColor="#000000"></TextInput>
+        <View style={{height: 20}} />
+            <TextInput
+          onChangeText={text => setAttendBy(text)}
+          value={AttendBy}
+          style={{
+            borderWidth: 1,
+            borderColor: '#0073ff',
+            borderRadius: 10,
+            color: '#0073ff',
+          }}
+          placeholder="AttendBy"
+          placeholderTextColor="#000000"></TextInput>
+        <View style={{height: 20}} />
+            <TextInput
+          onChangeText={text => setWorkorderType(text)}
+          value={WorkorderType}
+          style={{
+            borderWidth: 1,
+            borderColor: '#0073ff',
+            borderRadius: 10,
+            color: '#0073ff',
+          }}
+          placeholder="WorkorderType"
+          placeholderTextColor="#000000"></TextInput>
+        <View style={{height: 20}} />
+            <TextInput
+          onChangeText={text => setPreferredTimeTo(text)}
+          value={PreferredTimeTo}
+          style={{
+            borderWidth: 1,
+            borderColor: '#0073ff',
+            borderRadius: 10,
+            color: '#0073ff',
+          }}
+          placeholder="PreferredTimeTo"
+          placeholderTextColor="#000000"></TextInput>
+        <View style={{height: 20}} />
+            <TextInput
+          onChangeText={text => setPreferredTimeForm(text)}
+          value={PreferredTimeForm}
+          style={{
+            borderWidth: 1,
+            borderColor: '#0073ff',
+            borderRadius: 10,
+            color: '#0073ff',
+          }}
+          placeholder="PreferredTimeForm"
+          placeholderTextColor="#000000"></TextInput>
+        <View style={{height: 20}} />
+            <TextInput
+          onChangeText={text => setStandbyRemarks(text)}
+          value={StandbyRemarks}
+          style={{
+            borderWidth: 1,
+            borderColor: '#0073ff',
+            borderRadius: 10,
+            color: '#0073ff',
+          }}
+          placeholder="StandbyRemarks"
+          placeholderTextColor="#000000"></TextInput>
+        <View style={{height: 20}} />
+            <TextInput
+          onChangeText={text => setStandbyDateTime(text)}
+          value={StandbyDateTime}
+          style={{
+            borderWidth: 1,
+            borderColor: '#0073ff',
+            borderRadius: 10,
+            color: '#0073ff',
+          }}
+          placeholder="StandbyDateTime"
           placeholderTextColor="#000000"></TextInput>
         <View style={{height: 20}} />
 
@@ -207,8 +369,7 @@ useEffect(() => {
           <Button title="Submit" onPress={handlePress} color="#0073ff" />
         </View>
       </View>
-
-    
+      </ScrollView>
     </View>
   );
 };
@@ -219,6 +380,8 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
+    alignSelf:'center',
+    height:80,
     width: '100%',
   },
 });

@@ -16,7 +16,7 @@ const Stack = createStackNavigator();
 const Navigationfiles = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator >
         <Stack.Screen name="Profile" component={Profile} />
         {/* <Stack.Screen name="Main" component={Main} /> */}
         <Stack.Screen name="Login" component={Login} />
@@ -24,7 +24,7 @@ const Navigationfiles = () => {
         <Stack.Screen name="Home" component={Home} />
         {/* <Stack.Screen name="Design" component={Design_Pages} /> */}
         <Stack.Screen name="Break" component={Break}/>
-        <Stack.Screen name='Breakdown' component={BreakdownCards}/>
+        <Stack.Screen name='Breakdown'   component={BreakdownCards}/>
         <Stack.Screen name='Async' component={Async_Methud}/>
       </Stack.Navigator>
     </NavigationContainer>
