@@ -5,8 +5,8 @@ const Profile = ({ navigation }) => {
     // { id: 1, Tilename: 'Main',  Navigation: 'Main', color: '#000000' },
     // { id: 2, Tilename: 'Lists', Navigation: 'Lists', color: '#000000' },
     // { id: 4, Tilename: 'Design', Navigation: 'Design', color: '#000000' },
-    { id: 3, Tilename: 'Login', Navigation: 'Login', color: '#000000' },
-    { id: 5, Tilename: 'Async', Navigation: 'Async', color: '#000000' },
+    // { id: 3, Tilename: 'Login', Navigation: 'Login', color: '#000000' },
+    // { id: 5, Tilename: 'Async', Navigation: 'Async', color: '#000000' },
   ]
 
   return (
