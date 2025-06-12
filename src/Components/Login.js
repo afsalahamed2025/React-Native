@@ -3,14 +3,12 @@ import { View, Text, Image, Button, StyleSheet, TextInput, Alert } from 'react-n
 
 import  AsyncStorage  from '@react-native-async-storage/async-storage';
 import Home from './Home';
-import based64 from 'base-64'
+import {encode as btoa} from 'base-64'
 
 
 export default function Login({navigation}) {
   const [username, setusername] = useState('')
   const [password, setpassword] = useState('')
-
-
 
 useEffect(() => {
  Saved_Data()
@@ -54,8 +52,8 @@ useEffect(() => {
     }
 
     
-    const encodedUsername=based64.encode(username)
-    const encodedPassword=based64.encode(password)
+    const encodedUsername=btoa(username)
+    const encodedPassword=btoa(password)
 
     console.log('Encoded Username:',encodedUsername)
     console.log('Encoded Password:',encodedPassword)
@@ -92,7 +90,7 @@ useEffect(() => {
       await AsyncStorage.setItem('username',username)
       await AsyncStorage.setItem('password',password)
 
-      navigation.navigate("Home")
+      navigation.navigate(Home)
       console.log('Login Successfully and Home Page Move:')
     }
   else {
@@ -106,10 +104,7 @@ useEffect(() => {
       Alert.alert('Error',"Something went Wrong")
     }
 
-  //   else {
-  //     Alert.alert('Success', 'Login Successfully');
-  //     navigation.navigate('Home')
-//  }
+
   }
   return (
     <View style={styles.container
