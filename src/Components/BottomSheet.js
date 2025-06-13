@@ -15,6 +15,7 @@ import {format} from 'date-fns';
 import {ScrollView, TextInput} from 'react-native-gesture-handler';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import {moderatescale,verticalscale} from './Responsive';
 
 const RegisterTicket = () => {
   const [Contract, setContract] = useState('');
@@ -35,49 +36,49 @@ const RegisterTicket = () => {
   const [Floorbtmsheet, setFloorbtmsheet] = useState(false);
   const [Floor, setFloor] = useState('');
   const [FloorData, setFloorData] = useState([]);
-  const [Flooridpk, setFlooridpk] = useState([]);
+  const [Flooridpk, setFlooridpk] = useState('');
 
   const [Spotbtmsheet, setSpotbtmsheet] = useState(false);
   const [Spot, setSpot] = useState('');
   const [SpotData, setSpotData] = useState([]);
-  const [Spotidpk, setSpotidpk] = useState([]);
+  const [Spotidpk, setSpotidpk] = useState('');
 
   const [Servicebtmsheet, setServicebtmsheet] = useState(false);
   const [Service, setService] = useState('');
   const [ServiceData, setServiceData] = useState([]);
-  const [Serviceidpk, setServiceidpk] = useState([]);
+  const [Serviceidpk, setServiceidpk] = useState('');
 
   const [Complaintbtmsheet, setComplaintbtmsheet] = useState(false);
   const [Complaint, setComplaint] = useState('');
   const [ComplaintData, setComplaintData] = useState([]);
-  const [Complaintidpk, setComplaintidpk] = useState([]);
+  const [Complaintidpk, setComplaintidpk] = useState('');
 
   const [Naturalbtmsheet, setNaturalbtmsheet] = useState(false);
   const [Natural, setNatural] = useState('');
   const [NaturalData, setNaturalData] = useState([]);
-  const [Naturalidpk, setNaturalidpk] = useState([]);
+  const [Naturalidpk, setNaturalidpk] = useState('');
 
   const [Divisionbtmsheet, setDivisionbtmsheet] = useState(false);
   const [Division, setDivision] = useState('');
   const [DivisionData, setDivisionData] = useState([]);
-  const [Divisionidpk, setDivisionidpk] = useState([]);
+  const [Divisionidpk, setDivisionidpk] = useState('');
 
   const [Prioritybtmsheet, setPrioritybtmsheet] = useState(false);
   const [Priority, setPriority] = useState('');
   const [PriorityData, setPriorityData] = useState([]);
-  const [Priorityidpk, setPriorityidpk] = useState([]);
+  const [Priorityidpk, setPriorityidpk] = useState('');
 
   const [Disciplinebtmsheet, setDisciplinebtmsheet] = useState(false);
   const [Discipline, setDiscipline] = useState('');
   const [DisciplineData, setDisciplineData] = useState([]);
-  const [Disciplineidpk, setDisciplineidpk] = useState([]);
+  const [Disciplineidpk, setDisciplineidpk] = useState('');
 
   const [Descriptionbtmsheet, setDescriptionbtmsheet] = useState(false);
   const [Description, setDescription] = useState('');
-  const [DescriptionData, setDescriptionData] = useState([]);
+  // const [DescriptionData, setDescriptionData] = useState([]);
   // const [Descriptionidpk, setDescriptionidpk] = useState([]);
 
-  const [ClientData, setClientData] = useState([]);
+  // const [ClientData, setClientData] = useState([]);
   const [Clientbtmsheet, setClientbtmsheet] = useState([]);
   const [Client, setClient] = useState('');
 
@@ -87,158 +88,164 @@ const RegisterTicket = () => {
     item.DisciplineName.toLowerCase().includes(searchText.toLowerCase()),
   );
 
-  const handlePress = async () => {
-    if (Contract == '') {
-      Alert.alert('Error', 'Please fill in all the fields');
-      return;
-    } else if (Locality == '') {
-      Alert.alert('Error', 'Select Contract');
-    } else if (Building == '') {
-      Alert.alert('Error', 'Select Building');
-    } else if (Floor == '') {
-      Alert.alert('Error', 'Select Floor');
-    } else if (Spot == '') {
-      Alert.alert('Error', 'Select Spot');
-    } else if (Service == '') {
-      Alert.alert('Error', 'Select Service');
-    }
-     else if (Complaint == '') {
-      Alert.alert('Error', 'Select Complaint');
-    }
-      else if (Natural == '') {
-      Alert.alert('Error', 'Select Natural');
-    }
-       else if (Division == '') {
-      Alert.alert('Error', 'Select Division');
-    }
-        else if (Priority == '') {
-      Alert.alert('Error', 'Select Priority');
-    }
-       else if (Discipline == '') {
-      Alert.alert('Error', 'Select Discipline');
-    }
-  
-       else if (Description == '') {
-      Alert.alert('Error', 'Select Description');
-    }
-
-    else if (Client == '') {
-      Alert.alert('Error', 'Select Client');
-    }
 
 
-    let today = new Date();
-    let TimeFormat = format(today, 'yyyy-MM-dd HH:mm:ss');
-    console.log('Formatted Date:', TimeFormat);
+const handlePress = async () => {
+  if (Contract == '') {
+    Alert.alert('Error', 'Please fill in all the fields');
+    return;
+  } else if (Locality == '') {
+    Alert.alert('Error', 'Select Contract');
+    return;
+  } else if (Building == '') {
+    Alert.alert('Error', 'Select Building');
+    return;
+  } else if (Floor == '') {
+    Alert.alert('Error', 'Select Floor');
+    return;
+  } else if (Spot == '') {
+    Alert.alert('Error', 'Select Spot');
+    return;
+  } else if (Service == '') {
+    Alert.alert('Error', 'Select Service');
+    return;
+  } else if (Complaint == '') {
+    Alert.alert('Error', 'Select Complaint');
+    return;
+  } else if (Natural == '') {
+    Alert.alert('Error', 'Select Natural');
+    return;
+  } else if (Division == '') {
+    Alert.alert('Error', 'Select Division');
+    return;
+  } else if (Priority == '') {
+    Alert.alert('Error', 'Select Priority');
+    return;
+  } else if (Discipline == '') {
+    Alert.alert('Error', 'Select Discipline');
+    return;
+  } else if (Description == '') {
+    Alert.alert('Error', 'Select Description');
+    return;
+  } else if (Client == '') {
+    Alert.alert('Error', 'Select Client');
+    return;
+  }
 
-    const requestData = {
-      data: [
-        {
-          P1: '',
-          P2: '',
-          P3: '',
-          P4: '2025-06-10 16:35:49',
-          P5: null,
-          P6: null,
-          P7: null,
-          P8: '',
-          P9: '',
-          P10: '',
-          P11: '0',
-          P12: 0,
-          P13: 0,
-          P14: '0',
-          P15: '',
-          P16: '0',
-          P17: '0',
-          P18: '',
-          P19: null,
-          P20: 0,
-          P21: '0',
-          P22: '0',
-          P23: '2025-06-10 17:35:31',
-          P24: '2025-06-10 18:35:31',
-          P25: null,
-          P26: '2025-06-10 19:35:31',
-          P27: null,
-          P28: 0,
-          P29: 0,
-          P30: 0,
-          P31: 0,
-          P32: 0,
-          P33: 0,
-          P34: 0,
-          P35: 0,
-          P36: 0,
-          P37: 0,
-          P38: '',
-          P39: 0,
-          P40: '0',
-          P41: 0,
-          P42: '',
-          P43: '',
-          P44: 0,
-          P45: '',
-          P46: '',
-          P47: '',
-          P48: '',
-          P49: '0',
-          P50: null,
-          P51: Contractidpk ? parseInt(Contractidpk) : null,
-          P52: Localityidpk ? parseInt(Localityidpk) : null,
-          P53: Buildingidpk ? parseInt(Buildingidpk) : null,
-          P54: Flooridpk ? parseInt(Flooridpk) : null,
-          P55: Spotidpk ? parseInt(Spotidpk) : null,
-          P56: Serviceidpk ? parseInt(Serviceidpk) : null,
-          P57: 1100,
-          P58: null,
-          P59: '0',
-          P60: 893,
-          P61: '6',
-          P62: 50,
-          P63: null,
-          P64: '4',
-          P65: '1',
-          P66: 6,
-          P67: null,
-          P68: null,
-          P69: null,
-          P70: null,
-          P71: null,
-          P72: '1',
-          P73: '0',
-          P74: '551',
-          P75: '2025-06-10 16:35:49',
-          P76: '551',
-          P77: '2025-06-10 16:35:49',
-        },
-      ],
-    };
-    console.log(requestData);
-    try {
-      const response = await fetch('http:13.127.67.252:5040/FP290S1/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(requestData),
-      });
-      const result = await response.json();
-      console.log('Api response:', result);
+  let today = new Date();
+  let TimeFormat = format(today, 'yyyy-MM-dd HH:mm:ss');
 
-      const status = result?.[0]?.status?.code;
-
-      if (status == '200') {
-        console.log('Success', 'Complaint SuccessFully');
-        Alert.alert('Success', 'Complaint SuccessFully');
-      } else {
-        const msg = result?.[0]?.status?.message || 'Subimisson Failed';
-        console.log('Error', msg);
-      }
-    } catch (error) {
-      console.log('Api Error:', error);
-    }
+  const requestData = {
+    data: [
+      {
+       "P1": "",
+            "P2": "",
+            "P3": "",
+            "P4": TimeFormat,
+            "P5": null,
+            "P6": null,
+            "P7": null,
+            "P8": "",
+            "P9": "",
+            "P10": "",
+            "P11": "0",
+            "P12": 0,
+            "P13": 0,
+            "P14": "0",
+            "P15": "",
+            "P16": "0",
+            "P17": "0",
+            "P18": "",
+            "P19": null,
+            "P20": 0,
+            "P21": "0",
+            "P22": "0",
+            "P23": TimeFormat,
+            "P24": TimeFormat,
+            "P25": null,
+            "P26": TimeFormat,
+            "P27": null,
+            "P28": 0,
+            "P29": 0,
+            "P30": 0,
+            "P31": 0,
+            "P32": 0,
+            "P33": 0,
+            "P34": 0,
+            "P35": 0,
+            "P36": 0,
+            "P37": 0,
+            "P38": "",
+            "P39": 0,
+            "P40": "0",
+            "P41": 0,
+            "P42": "",
+            "P43": "",
+            "P44": 0,
+            "P45": "",
+            "P46": "",
+            "P47": "",
+            "P48": "",
+            "P49": "0",
+            "P50": null,
+            "P51": 1056,
+            "P52": 79,
+            "P53": 1125,
+            "P54": null,
+            "P55": null,
+            "P56": 3,
+            "P57": 1068,
+            "P58": null,
+            "P59": "0",
+            "P60": 527,
+            "P61": "6",
+            "P62": 11,
+            "P63": null,
+            "P64": "4",
+            "P65": "1",
+            "P66": 5,
+            "P67": null,
+            "P68": null,
+            "P69": null,
+            "P70": null,
+            "P71": null,
+            "P72": "1",
+            "P73": "0",
+            "P74": "124",
+            "P75": TimeFormat,
+            "P76": "124",
+            "P77": TimeFormat
+      },
+    ],
   };
+
+  console.log("Sending Request:", JSON.stringify(requestData));
+
+  try {
+    const response = await fetch('http://13.127.67.252:5040/FP290S1/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(requestData),
+    });
+
+    const result = await response.json();
+    console.log('API Response:', JSON.stringify(result));
+
+    const status = result?.[0]?.status?.code;
+    if (status == '200') {
+      Alert.alert('Success', 'Complaint Successfully Submitted');
+    } else {
+      const msg = result?.[0]?.status?.message || 'Submission Failed';
+      Alert.alert('Error', msg);
+    }
+  } catch (error) {
+    console.log('API Error:', error);
+    Alert.alert('Error', 'Something went wrong. Please try again.');
+  }
+};
+
 
   /* Contract */
   const Saved_Data = async () => {
@@ -893,6 +900,7 @@ Locality state kulla save pannudhu */
                 alignSelf: 'center',
                 backgroundColor: '#ffffff',
               }}>
+               
               <TouchableOpacity
                 onPress={() => {
                   setComplaintbtmsheet(true);
@@ -910,6 +918,17 @@ Locality state kulla save pannudhu */
                   alignItems: 'center',
                   alignSelf: 'center',
                 }}>
+                     <Text
+                    style={{
+                      position: 'absolute',
+                      left: moderatescale(14),
+                      top: verticalscale(-9),
+                      backgroundColor: '#ffffff',
+                      color: '#0073ff',
+                      zIndex: 2,
+                    }}>
+                    Complaint
+                  </Text>
                 <View
                   style={{
                     width: '90%',
@@ -924,17 +943,7 @@ Locality state kulla save pannudhu */
                     }}>
                     {Complaint ? Complaint : 'Select Complaint Type'}
                   </Text>
-                  <Text
-                    style={{
-                      position: 'absolute',
-                      right: 280,
-                      top: -27,
-                      backgroundColor: '#ffffff',
-                      color: '#0073ff',
-                      zIndex: 12,
-                    }}>
-                    Complaint
-                  </Text>
+            
                 </View>
                 <View
                   style={{
@@ -1038,6 +1047,17 @@ Locality state kulla save pannudhu */
                   alignItems: 'center',
                   alignSelf: 'center',
                 }}>
+                       <Text
+                    style={{
+                      position: 'absolute',
+                      left: moderatescale(14),
+                      top: verticalscale(-9),
+                      backgroundColor: '#ffffff',
+                      color: '#0073ff',
+                      zIndex: 2,
+                    }}>
+                    Contract
+                  </Text>
                 <View
                   style={{
                     width: '90%',
@@ -1052,17 +1072,7 @@ Locality state kulla save pannudhu */
                     }}>
                     {Contract ? Contract : 'Select Contract'}
                   </Text>
-                  <Text
-                    style={{
-                      position: 'absolute',
-                      right: 290,
-                      top: -27,
-                      backgroundColor: '#ffffff',
-                      color: '#0073ff',
-                      zIndex: 12,
-                    }}>
-                    Contract
-                  </Text>
+               
                 </View>
                 <View
                   style={{
@@ -1127,6 +1137,17 @@ Locality state kulla save pannudhu */
                   alignItems: 'center',
                   alignSelf: 'center',
                 }}>
+                      <Text
+                    style={{
+                      position: 'absolute',
+                      left: moderatescale(14),
+                      top: verticalscale(-9),
+                      backgroundColor: '#ffffff',
+                      color: '#0073ff',
+                      zIndex: 2,
+                    }}>
+                    Location
+                  </Text>
                 <View
                   style={{
                     width: '90%',
@@ -1141,17 +1162,7 @@ Locality state kulla save pannudhu */
                     }}>
                     {Locality ? Locality : 'Select Locality'}
                   </Text>
-                  <Text
-                    style={{
-                      position: 'absolute',
-                      right: 290,
-                      top: -27,
-                      backgroundColor: '#ffffff',
-                      color: '#0073ff',
-                      zIndex: 12,
-                    }}>
-                    Location
-                  </Text>
+              
                 </View>
                 <View
                   style={{
@@ -1216,6 +1227,17 @@ Locality state kulla save pannudhu */
                   alignItems: 'center',
                   alignSelf: 'center',
                 }}>
+                       <Text
+                    style={{
+                      position: 'absolute',
+                      left: moderatescale(14),
+                      top: verticalscale(-9),
+                      backgroundColor: '#ffffff',
+                      color: '#0073ff',
+                      zIndex: 2,
+                    }}>
+                    Building
+                  </Text>
                 <View
                   style={{
                     width: '90%',
@@ -1230,17 +1252,7 @@ Locality state kulla save pannudhu */
                     }}>
                     {Building ? Building : 'Select Building'}
                   </Text>
-                  <Text
-                    style={{
-                      position: 'absolute',
-                      right: 290,
-                      top: -27,
-                      backgroundColor: '#ffffff',
-                      color: '#0073ff',
-                      zIndex: 12,
-                    }}>
-                    Building
-                  </Text>
+              
                 </View>
                 <View
                   style={{
@@ -1305,6 +1317,17 @@ Locality state kulla save pannudhu */
                   alignItems: 'center',
                   alignSelf: 'center',
                 }}>
+                       <Text
+                    style={{
+                      position: 'absolute',
+                      left: moderatescale(14),
+                      top: verticalscale(-9),
+                      backgroundColor: '#ffffff',
+                      color: '#0073ff',
+                      zIndex: 2,
+                    }}>
+                    Floor
+                  </Text>
                 <View
                   style={{
                     width: '90%',
@@ -1319,17 +1342,7 @@ Locality state kulla save pannudhu */
                     }}>
                     {Floor ? Floor : 'Select Floor'}
                   </Text>
-                  <Text
-                    style={{
-                      position: 'absolute',
-                      right: 310,
-                      top: -27,
-                      backgroundColor: '#ffffff',
-                      color: '#0073ff',
-                      zIndex: 12,
-                    }}>
-                    Floor
-                  </Text>
+               
                 </View>
                 <View
                   style={{
@@ -1394,6 +1407,17 @@ Locality state kulla save pannudhu */
                   alignItems: 'center',
                   alignSelf: 'center',
                 }}>
+                       <Text
+                    style={{
+                      position: 'absolute',
+                      left: moderatescale(14),
+                      top: verticalscale(-9),
+                      backgroundColor: '#ffffff',
+                      color: '#0073ff',
+                      zIndex: 2,
+                    }}>
+                    Spot
+                  </Text>
                 <View
                   style={{
                     width: '90%',
@@ -1408,17 +1432,8 @@ Locality state kulla save pannudhu */
                     }}>
                     {Spot ? Spot : 'Select Spot'}
                   </Text>
-                  <Text
-                    style={{
-                      position: 'absolute',
-                      right: 314,
-                      top: -27,
-                      backgroundColor: '#ffffff',
-                      color: '#0073ff',
-                      zIndex: 12,
-                    }}>
-                    Spot
-                  </Text>
+                  
+               
                 </View>
                 <View
                   style={{
@@ -1479,6 +1494,17 @@ Locality state kulla save pannudhu */
                   alignItems: 'center',
                   alignSelf: 'center',
                 }}>
+                       <Text
+                    style={{
+                      position: 'absolute',
+                      left: moderatescale(14),
+                      top: verticalscale(-9),
+                      backgroundColor: '#ffffff',
+                      color: '#0073ff',
+                      zIndex: 2,
+                    }}>
+                    Service
+                  </Text>
                 <View
                   style={{
                     width: '90%',
@@ -1493,17 +1519,7 @@ Locality state kulla save pannudhu */
                     }}>
                     {Service ? Service : 'Select Service'}
                   </Text>
-                  <Text
-                    style={{
-                      position: 'absolute',
-                      right: 294,
-                      top: -27,
-                      backgroundColor: '#ffffff',
-                      color: '#0073ff',
-                      zIndex: 12,
-                    }}>
-                    Service
-                  </Text>
+            
                 </View>
                 <View
                   style={{
@@ -1607,6 +1623,17 @@ Locality state kulla save pannudhu */
                   alignItems: 'center',
                   alignSelf: 'center',
                 }}>
+                       <Text
+                    style={{
+                      position: 'absolute',
+                      left: moderatescale(14),
+                      top: verticalscale(-9),
+                      backgroundColor: '#ffffff',
+                      color: '#0073ff',
+                      zIndex: 2,
+                    }}>
+                    Nature Of Complaint
+                  </Text>
                 <View
                   style={{
                     width: '90%',
@@ -1621,17 +1648,7 @@ Locality state kulla save pannudhu */
                     }}>
                     {Natural ? Natural : 'Select Natural'}
                   </Text>
-                  <Text
-                    style={{
-                      position: 'absolute',
-                      right: 290,
-                      top: -27,
-                      backgroundColor: '#ffffff',
-                      color: '#0073ff',
-                      zIndex: 12,
-                    }}>
-                    Building
-                  </Text>
+                
                 </View>
                 <View
                   style={{
@@ -1696,6 +1713,17 @@ Locality state kulla save pannudhu */
                   alignItems: 'center',
                   alignSelf: 'center',
                 }}>
+                       <Text
+                    style={{
+                      position: 'absolute',
+                      left: moderatescale(14),
+                      top: verticalscale(-9),
+                      backgroundColor: '#ffffff',
+                      color: '#0073ff',
+                      zIndex: 2,
+                    }}>
+                    Division
+                  </Text>
                 <View
                   style={{
                     width: '90%',
@@ -1710,17 +1738,7 @@ Locality state kulla save pannudhu */
                     }}>
                     {Division ? Division : 'Select Division'}
                   </Text>
-                  <Text
-                    style={{
-                      position: 'absolute',
-                      right: 290,
-                      top: -27,
-                      backgroundColor: '#ffffff',
-                      color: '#0073ff',
-                      zIndex: 12,
-                    }}>
-                    Division
-                  </Text>
+               
                 </View>
                 <View
                   style={{
@@ -1786,6 +1804,17 @@ Locality state kulla save pannudhu */
                   alignItems: 'center',
                   alignSelf: 'center',
                 }}>
+                       <Text
+                    style={{
+                      position: 'absolute',
+                      left: moderatescale(14),
+                      top: verticalscale(-9),
+                      backgroundColor: '#ffffff',
+                      color: '#0073ff',
+                      zIndex: 2,
+                    }}>
+                    Priority
+                  </Text>
                 <View
                   style={{
                     width: '90%',
@@ -1800,17 +1829,7 @@ Locality state kulla save pannudhu */
                     }}>
                     {Priority ? Priority : 'Select Priority'}
                   </Text>
-                  <Text
-                    style={{
-                      position: 'absolute',
-                      right: 300,
-                      top: -27,
-                      backgroundColor: '#ffffff',
-                      color: '#0073ff',
-                      zIndex: 12,
-                    }}>
-                    Priority
-                  </Text>
+           
                 </View>
                 <View
                   style={{
@@ -1875,6 +1894,17 @@ Locality state kulla save pannudhu */
                   alignItems: 'center',
                   alignSelf: 'center',
                 }}>
+                       <Text
+                    style={{
+                      position: 'absolute',
+                      left: moderatescale(14),
+                      top: verticalscale(-9),
+                      backgroundColor: '#ffffff',
+                      color: '#0073ff',
+                      zIndex: 2,
+                    }}>
+                    Discipline
+                  </Text>
                 <View
                   style={{
                     width: '90%',
@@ -1889,17 +1919,7 @@ Locality state kulla save pannudhu */
                     }}>
                     {Discipline ? Discipline : 'Select Discipline'}
                   </Text>
-                  <Text
-                    style={{
-                      position: 'absolute',
-                      right: 280,
-                      top: -27,
-                      backgroundColor: '#ffffff',
-                      color: '#0073ff',
-                      zIndex: 12,
-                    }}>
-                    Discipline
-                  </Text>
+                
                 </View>
                 <View
                   style={{
@@ -1948,187 +1968,183 @@ Locality state kulla save pannudhu */
                 </View>
               </TouchableOpacity>
               <View style={{height: 20}} />
-              <TouchableOpacity
-                onPress={() => {
-                  setSpotbtmsheet(true), Spot_API();
-                }}
-                style={{
-                  borderColor: '#0073ff',
-                  borderRadius: 7,
-                  borderWidth: 1,
-                  padding: 5,
-                  flexDirection: 'row',
-                  width: '100%',
-                  height: 50,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  alignSelf: 'center',
-                }}>
-                <View
-                  style={{
-                    width: '90%',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    alignSelf: 'center',
-                  }}>
-                  <TextInput
-                    style={{
-                      alignSelf: 'flex-start',
-                      color: 'black',
-                    }}
-                    placeholder="Enter Client Workorder No"
-                    placeholderTextColor="#000000">
-                    {Description ? Description : 'Select Description'}
-                  </TextInput>
-                  <Text
-                    style={{
-                      position: 'absolute',
-                      right: 270,
-                      top: -21,
-                      backgroundColor: '#ffffff',
-                      color: '#0073ff',
-                      zIndex: 12,
-                    }}>
-                    Description
-                  </Text>
-                </View>
-                <View
-                  style={{
-                    width: 1,
-                    height: 40,
-                    backgroundColor: '#d0cdcd',
-                    fontSize: '16',
-                    fontWeight: '100',
-                    justifyContent: 'center',
-                    alignSelf: 'center',
-                  }}
-                />
-                <View
-                  style={{
-                    width: '10%',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    alignSelf: 'center',
-                  }}>
-                  <TouchableOpacity
-                    onPress={() => {
-                      if (Description) {
-                        setDescription('');
-                      } else {
-                        setDescriptionbtmsheet(!Descriptionbtmsheet);
-                      }
-                    }}
-                    style={{
-                      width: '100%',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      alignSelf: 'center',
-                    }}>
-                    <AntDesign
-                      style={{color: '#000000', fontWeight: '700'}}
-                      name={
-                        Description
-                          ? 'close'
-                          : Descriptionbtmsheet
-                          ? 'caretup'
-                          : 'caretdown'
-                      }
-                      size={18}
-                    />
-                  </TouchableOpacity>
-                </View>
-              </TouchableOpacity>
+           <TouchableOpacity
+  onPress={() => {
+    setDescriptionbtmsheet(true);
+  }}
+  style={{
+    borderColor: '#0073ff',
+    borderRadius: 7,
+    borderWidth: 1,
+    padding: 5,
+    flexDirection: 'row',
+    width: '100%',
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+  }}>
+  <Text
+    style={{
+      position: 'absolute',
+      left: moderatescale(14),
+      top: verticalscale(-9),
+      backgroundColor: '#ffffff',
+      color: '#0073ff',
+      zIndex: 2,
+    }}>
+    Description
+  </Text>
+
+  <View
+    style={{
+      width: '90%',
+      justifyContent: 'center',
+      alignItems: 'center',
+      alignSelf: 'center',
+    }}>
+    <TextInput
+      style={{alignSelf: 'flex-start', color: 'black'}}
+      placeholder="Enter Description"
+      placeholderTextColor="black"
+      value={Description}
+      onChangeText={setDescription}
+    />
+  </View>
+
+  <View
+    style={{
+      width: 1,
+      height: 40,
+      backgroundColor: '#d0cdcd',
+    }}
+  />
+
+  <View
+    style={{
+      width: '10%',
+      alignItems: 'center',
+      justifyContent: 'center',
+      alignSelf: 'center',
+    }}>
+    <TouchableOpacity
+      onPress={() => {
+        if (Description) {
+          setDescription('');
+        } else {
+          setDescriptionbtmsheet(!Descriptionbtmsheet);
+        }
+      }}
+      style={{
+        width: '100%',
+        alignItems: 'center',
+        justifyContent: 'center',
+        alignSelf: 'center',
+      }}>
+      <AntDesign
+        style={{color: '#000000', fontWeight: '700'}}
+        name={
+          Description
+            ? 'close'
+            : Descriptionbtmsheet
+            ? 'caretup'
+            : 'caretdown'
+        }
+        size={18}
+      />
+    </TouchableOpacity>
+  </View>
+</TouchableOpacity>
+
               <View style={{height: 20}} />
-              <TouchableOpacity
-                onPress={() => {
-                  setClientbtmsheet(true);
-                }}
-                style={{
-                  borderColor: '#0073ff',
-                  borderRadius: 7,
-                  borderWidth: 1,
-                  padding: 5,
-                  flexDirection: 'row',
-                  width: '100%',
-                  height: 50,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  alignSelf: 'center',
-                }}>
-                <View
-                  style={{
-                    width: '90%',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    alignSelf: 'center',
-                  }}>
-                  <TextInput
-                    style={{
-                      alignSelf: 'flex-start',
-                      color: 'black',
-                    }}
-                    placeholder="Enter Client Workorder No"
-                    placeholderTextColor="#000000">
-                    {Client ? Client : 'Enter Client Workorder No'}
-                  </TextInput>
-                  <Text
-                    style={{
-                      position: 'absolute',
-                      right: 270,
-                      top: -21,
-                      backgroundColor: '#ffffff',
-                      color: '#0073ff',
-                      zIndex: 12,
-                    }}>
-                    Description
-                  </Text>
-                </View>
-                <View
-                  style={{
-                    width: 1,
-                    height: 40,
-                    backgroundColor: '#d0cdcd',
-                    fontSize: '16',
-                    fontWeight: '100',
-                    justifyContent: 'center',
-                    alignSelf: 'center',
-                  }}
-                />
-                <View
-                  style={{
-                    width: '10%',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    alignSelf: 'center',
-                  }}>
-                  <TouchableOpacity
-                    onPress={() => {
-                      if (Client) {
-                        setClient('');
-                      } else {
-                        setClientbtmsheet(!Clientbtmsheet);
-                      }
-                    }}
-                    style={{
-                      width: '100%',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      alignSelf: 'center',
-                    }}>
-                    <AntDesign
-                      style={{color: '#000000', fontWeight: '700'}}
-                      name={
-                        Client
-                          ? 'close'
-                          : Clientbtmsheet
-                          ? 'caretup'
-                          : 'caretdown'
-                      }
-                      size={18}
-                    />
-                  </TouchableOpacity>
-                </View>
-              </TouchableOpacity>
+          <TouchableOpacity
+  onPress={() => {
+    setClientbtmsheet(true);
+  }}
+  style={{
+    borderColor: '#0073ff',
+    borderRadius: 7,
+    borderWidth: 1,
+    padding: 5,
+    flexDirection: 'row',
+    width: '100%',
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+  }}>
+  <Text
+    style={{
+      position: 'absolute',
+      left: moderatescale(14),
+      top: verticalscale(-9),
+      backgroundColor: '#ffffff',
+      color: '#0073ff',
+      zIndex: 2,
+    }}>
+    Workorder No
+  </Text>
+
+  <View
+    style={{
+      width: '90%',
+      justifyContent: 'center',
+      alignItems: 'center',
+      alignSelf: 'center',
+    }}>
+    <TextInput
+      style={{alignSelf: 'flex-start', color: 'black'}}
+      placeholder="Enter Client Workorder No"
+      placeholderTextColor="black"
+      value={Client}
+      onChangeText={setClient}
+    />
+  </View>
+
+  <View
+    style={{
+      width: 1,
+      height: 40,
+      backgroundColor: '#d0cdcd',
+    }}
+  />
+
+  <View
+    style={{
+      width: '10%',
+      alignItems: 'center',
+      justifyContent: 'center',
+      alignSelf: 'center',
+    }}>
+    <TouchableOpacity
+      onPress={() => {
+        if (Client) {
+          setClient('');
+        } else {
+          setClientbtmsheet(!Clientbtmsheet);
+        }
+      }}
+      style={{
+        width: '100%',
+        alignItems: 'center',
+        justifyContent: 'center',
+        alignSelf: 'center',
+      }}>
+      <AntDesign
+        style={{color: '#000000', fontWeight: '700'}}
+        name={
+          Client
+            ? 'close'
+            : Clientbtmsheet
+            ? 'caretup'
+            : 'caretdown'
+        }
+        size={18}
+      />
+    </TouchableOpacity>
+  </View>
+</TouchableOpacity>
+
               <View style={{height: 20}} />
 
               {/*View Response Time  */}

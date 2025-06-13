@@ -5,7 +5,9 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
+  Alert
 } from 'react-native';
+
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 // import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
@@ -15,27 +17,94 @@ import {Image} from 'react-native';
 import progressImage from '../assets/image/rounded.png';
 import FontAwesome from 'react-native-vector-icons/FontAwesome5';
 import Feather from 'react-native-vector-icons/Feather';
+import AsyncStorage  from '@react-native-async-storage/async-storage';
+import Login from './Login';
 
+
+    
 export default function Home({navigation}) {
-  return (
+
+ const logout = () => {
+    Alert.alert(
+      'Logout',
+      'You Want Logout?',
+      [
+        { text: 'Cancel', style: 'cancel' },
+        {
+          text: 'Logout',
+          style: 'destructive',
+          onPress: async () => {
+            try {
+          await AsyncStorage.removeItem('username');
+          await AsyncStorage.removeItem('password');
+              navigation.navigate("Login");
+            } catch (error) {
+              console.log('Logout error:', error);
+            }
+          },
+        },
+      ],
+      { cancelable: true }
+    );
+  };
+
+
+   
+    return (
     <ScrollView style={styles.container}>
-      <View style={styles.header}>
-            <FontAwesome
-            name="bars"
-            size={18}
-            color="#ffffff"
-           
-          />
-        <Text style={styles.greeting}>
-          Hi, <Text style={styles.name}>Afsal</Text>
-        </Text>
-          <TouchableOpacity>
-         <MaterialIcons name="translate" size={28} color="#fff" />
-        </TouchableOpacity>
-        <TouchableOpacity>
-         <MaterialIcons name="notifications" size={28} color="#fff" />
-        </TouchableOpacity>
-      </View>
+     <View
+  style={{
+    width: '100%',
+    height: 100,
+    backgroundColor: '#0073ff',
+    borderBottomLeftRadius: 50,
+    borderBottomRightRadius: 50,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+  }}
+>
+  {/* Left: Menu Icon + Greeting */}
+  <View
+    style={{
+      width:'30%',
+      justifyContent:'center',
+      alignSelf:'center',
+      flexDirection: 'row',
+      alignItems: 'center',
+    }}
+  >
+    <TouchableOpacity onPress={logout} >
+
+    <FontAwesome name="bars" size={28} color="#fff" />
+    </TouchableOpacity>
+    <View style={{ padding:8, justifyContent:'flex-start',alignItems:'center',alignSelf:'center' }}>
+      <Text style={{ color: '#fff', fontSize: 14 }}>Hello,</Text>
+      <Text style={{ color: '#fff', fontWeight: 'bold', fontSize: 18 }}>
+     Afsal
+      </Text>
+    </View>
+  </View>
+
+  {/* Right: Translate and Bell */}
+  <View
+    style={{
+      width:'30%',
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent:'space-evenly',
+      alignSelf:'center',
+    }}
+  >
+    <TouchableOpacity style={{ justifyContent:'center',alignItems:'center',alignSelf:'center'}}>
+      <MaterialIcons name="translate" size={28} color="#fff" />
+    </TouchableOpacity>
+    <TouchableOpacity style={{ justifyContent:'center',alignItems:'center',alignSelf:'center'}}>
+      <MaterialIcons name="notifications" size={28} color="#fff" />
+    </TouchableOpacity>
+  </View>
+</View>
 
       <View style={styles.statusContainer}>
         <StatusBox label="Open" count="64" color="#ff0000" />

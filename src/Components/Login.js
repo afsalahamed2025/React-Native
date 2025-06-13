@@ -14,7 +14,6 @@ useEffect(() => {
  Saved_Data()
 }, [])
 
-
    const Saved_Data= async()=>{
       try{
       const username=await AsyncStorage.getItem('username')
@@ -24,9 +23,12 @@ useEffect(() => {
       if (username && password){
         navigation.navigate('Home') //replace use  pandarthu kku  (back pogathu login page kku) 
       }
+      else{
+      
+        console.log("Stays here itself")
+      }
     } catch (error){
       console.log('Error reading Aysnc:',error);
-      
     }
   }
   const handlePress = async () => {
